@@ -9,11 +9,14 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer';
-import { MenuIcon, X } from 'lucide-react';
+import { useAtomValue } from 'jotai';
+import { LogOut, MenuIcon, Swords, UserRound, X } from 'lucide-react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import React, { useCallback, useState } from 'react';
 
-import { MainPage } from '../../_utils/Paths';
+import { LoginStatus, loginStateAtom } from '../../_atoms/UserLoginAtoms';
+import { MainPage, OtherPage } from '../../_utils/Paths';
 
 interface OwnProps {
   className?: string;
@@ -24,6 +27,25 @@ export const MobileNavigationMenu = (
 ) => {
   const { children, className } = props;
   const [open, setOpen] = useState(false);
+  const loginState = useAtomValue(loginStateAtom);
+  const router = useRouter();
+
+  const handleLogout = useCallback(async () => {
+    // TODO: move to _data-access
+    await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/logout`, {
+      method: 'GET',
+    });
+    router.push(OtherPage.LOGOUT);
+  }, [router]);
+
+  const handleProfileSelect = useCallback(() => {
+    // TODO
+  }, []);
+
+  const handleKendoMemberPageSelect = useCallback(() => {
+    router.push(MainPage.MEMBER);
+    router.refresh();
+  }, [router]);
 
   return (
     <div className={className}>
@@ -38,11 +60,37 @@ export const MobileNavigationMenu = (
         </DrawerTrigger>
         <DrawerContent className="w-full overflow-y-auto overflow-x-hidden">
           <div className="mx-auto w-full max-w-sm">
-            <DrawerHeader className="flex flex-row items-center justify-between">
-              <DrawerTitle className="text-foreground">Menu</DrawerTitle>
-              <DrawerClose asChild>
-                <X className="bg-background text-foreground hover:cursor-pointer hover:text-accent/90" />
-              </DrawerClose>
+            <DrawerHeader>
+              <div className="flex flex-row items-center justify-between">
+                <DrawerTitle className="text-foreground">Menu</DrawerTitle>
+                <DrawerClose asChild>
+                  <X className="bg-background text-foreground hover:cursor-pointer hover:text-accent/90" />
+                </DrawerClose>
+              </div>
+              {loginState === LoginStatus.LOGGED_IN ? (
+                <div className="flex flex-col border-b-2">
+                  <DrawerClose>
+                    <Button
+                      className="flex w-full flex-row justify-start"
+                      onClick={handleProfileSelect}
+                      variant="link"
+                    >
+                      <UserRound className="mr-2 size-4" />
+                      <span>Profile</span>
+                    </Button>
+                  </DrawerClose>
+                  <DrawerClose>
+                    <Button
+                      className="flex w-full flex-row justify-start"
+                      onClick={handleKendoMemberPageSelect}
+                      variant="link"
+                    >
+                      <Swords className="mr-2 size-4" />
+                      <span>Kendo Member Page</span>
+                    </Button>
+                  </DrawerClose>
+                </div>
+              ) : null}
             </DrawerHeader>
             <ul
               className="flex flex-col gap-3 p-4 py-0 text-foreground"
@@ -60,13 +108,22 @@ export const MobileNavigationMenu = (
               {children}
             </ul>
             <DrawerFooter>
-              <DrawerClose asChild>
-                <Link href={MainPage.LOGIN}>
-                  <Button className="w-full" variant="default">
-                    Login
+              {loginState !== LoginStatus.LOGGED_IN ? (
+                <DrawerClose asChild>
+                  <Link href={MainPage.LOGIN}>
+                    <Button className="w-full" variant="default">
+                      Login
+                    </Button>
+                  </Link>
+                </DrawerClose>
+              ) : (
+                <DrawerClose asChild>
+                  <Button className="w-full" onClick={handleLogout}>
+                    <LogOut className="mr-2 size-4" />
+                    <span>Log out</span>
                   </Button>
-                </Link>
-              </DrawerClose>
+                </DrawerClose>
+              )}
             </DrawerFooter>
           </div>
         </DrawerContent>
