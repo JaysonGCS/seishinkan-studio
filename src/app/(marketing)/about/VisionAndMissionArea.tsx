@@ -7,7 +7,7 @@ interface OwnProps {
 export const VisionAndMissionArea = (props: OwnProps) => {
   const { missionDescription, visionDescription } = props;
   return (
-    <div className="flex w-full flex-col gap-14 px-8 lg:px-14">
+    <div className="flex w-full flex-col gap-14 px-8 py-14 lg:px-14">
       <div className="flex flex-col gap-4">
         <h1>Vision</h1>
         <p>{visionDescription}</p>

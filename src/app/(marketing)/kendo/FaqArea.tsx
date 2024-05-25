@@ -25,7 +25,7 @@ export const FaqArea = (props: OwnProps) => {
   });
 
   return (
-    <div className="w-full px-8 lg:px-14">
+    <div className="w-full px-8 py-14 lg:px-14">
       <h1>FAQ</h1>
       <Accordion collapsible type="single">
         {faqList}

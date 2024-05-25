@@ -11,6 +11,7 @@ import { Articles } from './cms/collections/Articles';
 import { ContactFormRecords } from './cms/collections/ContactFormRecords';
 import { InviteCodes } from './cms/collections/InviteCodes';
 import { Media } from './cms/collections/Media';
+import { ProfileMedia } from './cms/collections/ProfileMedia';
 import { Users } from './cms/collections/Users';
 import { WebsiteUsers } from './cms/collections/WebsiteUsers';
 import { DashboardHeader } from './cms/components/DashboardHeader';
@@ -41,6 +42,7 @@ export default buildConfig({
     WebsiteUsers,
     Articles,
     InviteCodes,
+    ProfileMedia,
     Media,
   ],
   cookiePrefix: 'ssk',

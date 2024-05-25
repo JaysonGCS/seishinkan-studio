@@ -11,6 +11,11 @@ type MediaSizeMapping = {
   thumbnail: MediaSize;
 };
 
+type ProfileMediaSizeMapping = {
+  profile: MediaSize;
+  thumbnail: MediaSize;
+};
+
 export const MediaConstant: MediaSizeMapping = {
   // 4:3
   thumbnail: { height: 300, width: 400 },
@@ -30,4 +35,12 @@ export const MediaConstant: MediaSizeMapping = {
     width: 1920,
   },
   hero: { height: undefined, width: 3840 },
+};
+
+export const ProfileMediaConstant: ProfileMediaSizeMapping = {
+  profile: { height: 1920, width: 1920 },
+  thumbnail: {
+    height: 400,
+    width: 400,
+  },
 };

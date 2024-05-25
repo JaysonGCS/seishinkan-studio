@@ -6,6 +6,7 @@ import { Section } from '../../_components/Section/Section';
 import { getPageDetails } from '../../_data-access/PageDetails';
 import { getSeoMetadata } from '../../_data-access/SeoMetadata';
 import { MainPage } from '../../_utils/Paths';
+import { TeamArea } from './TeamArea';
 import { VisionAndMissionArea } from './VisionAndMissionArea';
 
 const PAGE_KEY = MainPage.ABOUT;
@@ -23,6 +24,7 @@ const AboutPage = async () => {
   const {
     enabled: isEnabled,
     missionDescription,
+    team,
     visionDescription,
   } = pageDetails;
 
@@ -38,13 +40,15 @@ const AboutPage = async () => {
   return (
     <main>
       {showHeroSection ? <HeroSection media={heroImage} /> : null}
-      <Section className="py-14">
+      <Section>
         <VisionAndMissionArea
           missionDescription={missionDescription}
           visionDescription={visionDescription}
         />
       </Section>
-      <Section lightTheme>Founder</Section>
+      <Section lightTheme>
+        <TeamArea team={team} />
+      </Section>
     </main>
   );
 };

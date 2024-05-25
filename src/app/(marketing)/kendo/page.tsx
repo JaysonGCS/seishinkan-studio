@@ -43,11 +43,7 @@ const KendoPage = async () => {
       <Section anchor={pageToAnchor[MainPage.KENDO].classes}>
         Contact Us
       </Section>
-      <Section
-        anchor={pageToAnchor[MainPage.KENDO].faq}
-        className="py-14"
-        lightTheme
-      >
+      <Section anchor={pageToAnchor[MainPage.KENDO].faq} lightTheme>
         <FaqArea faqs={faqs} />
       </Section>
     </main>
