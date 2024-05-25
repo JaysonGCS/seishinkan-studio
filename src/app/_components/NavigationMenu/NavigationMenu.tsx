@@ -1,9 +1,21 @@
 'use client';
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { useAtomValue } from 'jotai';
+import { CircleUserRound, Swords, UserRound } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import React from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import React, { useCallback } from 'react';
 
+import { LoginStatus, loginStateAtom } from '../../_atoms/UserLoginAtoms';
 import { MainPage, isMainPage } from '../../_utils/Paths';
 import { MobileNavigationMenu } from './MobileNavigationMenu';
 import { NavigationLink } from './NavigationLink';
@@ -25,7 +37,7 @@ export const NavigationMenu = () => {
           <LinkList activePage={activePage} isMobileView />
         </MobileNavigationMenu>
       </nav>
-      <nav className="hidden justify-between border-b-2 border-b-accent bg-background px-5 py-2 text-foreground md:flex md:h-navigation-menu-md lg:h-navigation-menu-large">
+      <nav className="hidden items-center justify-between border-b-2 border-b-accent bg-background px-5 py-2 text-foreground md:flex md:h-navigation-menu-md lg:h-navigation-menu-large">
         <Link
           className="flex items-center md:text-sm lg:text-lg"
           href={MainPage.HOME}
@@ -35,13 +47,60 @@ export const NavigationMenu = () => {
         <ul className="flex gap-5">
           <LinkList activePage={activePage} isMobileView={false} />
         </ul>
+        <AccountNavigationMenu />
+      </nav>
+    </React.Fragment>
+  );
+};
+
+const AccountNavigationMenu = () => {
+  const loginState = useAtomValue(loginStateAtom);
+  const router = useRouter();
+  const currentPath = usePathname();
+  const activePage = isMainPage(currentPath) ? currentPath : MainPage.HOME;
+
+  const handleProfileSelect = useCallback(() => {
+    // TODO
+  }, []);
+
+  const handleKendoMemberPageSelect = useCallback(() => {
+    if (activePage === MainPage.MEMBER) {
+      return;
+    }
+    router.push(MainPage.MEMBER);
+    router.refresh();
+  }, [activePage, router]);
+
+  return (
+    <React.Fragment>
+      {loginState === LoginStatus.LOGGED_IN ? (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <CircleUserRound className="cursor-pointer" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56">
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem onSelect={handleProfileSelect}>
+                <UserRound className="mr-2 size-4" />
+                <span>Profile</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem onSelect={handleKendoMemberPageSelect}>
+                <Swords className="mr-2 size-4" />
+                <span>Kendo Member Page</span>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      ) : (
         <Link
           className="flex items-center hover:text-accent md:text-sm lg:text-lg"
           href={MainPage.LOGIN}
         >
           Login
         </Link>
-      </nav>
+      )}
     </React.Fragment>
   );
 };

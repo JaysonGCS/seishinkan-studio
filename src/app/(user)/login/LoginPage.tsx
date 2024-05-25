@@ -18,10 +18,12 @@ import {
   signUpFormSchema,
 } from '@/src/validation/emailValidation';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useSetAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
 import React, { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { LoginStatus, loginStateAtom } from '../../_atoms/UserLoginAtoms';
 import { Section } from '../../_components/Section/Section';
 import {
   TOAST_ERROR_DURATION,
@@ -35,6 +37,7 @@ export const LoginPage = () => {
   const [loginStage, setLoginStage] = useState<TLoginStage>('LOGIN');
   const [isInProgress, setInProgress] = useState(false);
   const router = useRouter();
+  const setLoginState = useSetAtom(loginStateAtom);
 
   const signUpForm = useForm<z.infer<typeof signUpFormSchema>>({
     defaultValues: {
@@ -94,6 +97,7 @@ export const LoginPage = () => {
         method: 'POST',
       });
       if (resp.ok) {
+        setLoginState(LoginStatus.LOGGED_IN);
         router.push(MainPage.MEMBER);
         router.refresh();
       } else {
@@ -106,7 +110,7 @@ export const LoginPage = () => {
       }
       setInProgress(false);
     },
-    [router],
+    [router, setLoginState],
   );
 
   const handleSwitchToSignUp = useCallback(() => {
