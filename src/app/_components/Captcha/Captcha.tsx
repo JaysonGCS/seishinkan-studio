@@ -1,7 +1,14 @@
 'use client';
 import type { CSSProperties } from 'react';
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 
 import { TURNSTILE_LOAD_FUNCTION } from '../../_utils/Constants';
 
@@ -30,11 +37,16 @@ export interface CaptchaCallbacks {
 export interface CaptchaProps extends CaptchaCallbacks {
   className?: HTMLDivElement['className'];
   id?: HTMLDivElement['id'];
+  refreshExpiredMode?: Turnstile.RenderParameters['refresh-expired'];
   sitekey: Turnstile.RenderParameters['sitekey'];
   style?: CSSProperties;
 }
 
-export const Captcha = (props: CaptchaProps) => {
+export type CaptchaInnerFunctions = {
+  reset: () => void;
+};
+
+export const Captcha = forwardRef((props: CaptchaProps, ref) => {
   const {
     id,
     className,
@@ -45,11 +57,27 @@ export const Captcha = (props: CaptchaProps) => {
     onTimeout,
     onUnsupported,
     onVerify,
+    refreshExpiredMode,
     sitekey,
     style,
   } = props;
   const divRef = useRef<HTMLDivElement | null>(null);
   const [state, setState] = useState<CaptchaState>(captchaState);
+  const widgetIdRef = useRef<null | string>(null);
+
+  useImperativeHandle(
+    ref,
+    () => {
+      return {
+        reset: () => {
+          if (widgetIdRef.current !== null) {
+            globalNamespace.turnstile?.reset(widgetIdRef.current);
+          }
+        },
+      } satisfies CaptchaInnerFunctions;
+    },
+    [],
+  );
 
   const updateCaptchaState = useCallback((state: CaptchaState) => {
     captchaState = state;
@@ -89,6 +117,7 @@ export const Captcha = (props: CaptchaProps) => {
         'expired-callback': (token) => {
           onExpired?.(token);
         },
+        'refresh-expired': refreshExpiredMode,
         sitekey,
         'timeout-callback': () => {
           onTimeout?.();
@@ -97,11 +126,12 @@ export const Captcha = (props: CaptchaProps) => {
           onUnsupported?.();
         },
       };
-      const widgetId = globalNamespace.turnstile?.render(
-        divRef.current,
-        turnstileOptions,
-      );
+      const widgetId =
+        globalNamespace.turnstile?.render(divRef.current, turnstileOptions) ??
+        null;
+      widgetIdRef.current = widgetId;
       return () => {
+        widgetIdRef.current = null;
         widgetId && globalNamespace.turnstile?.remove(widgetId);
       };
     }
@@ -113,9 +143,10 @@ export const Captcha = (props: CaptchaProps) => {
     onTimeout,
     onUnsupported,
     onVerify,
+    refreshExpiredMode,
     sitekey,
     state,
   ]);
 
   return <div className={className} id={id} ref={divRef} style={style} />;
-};
+});

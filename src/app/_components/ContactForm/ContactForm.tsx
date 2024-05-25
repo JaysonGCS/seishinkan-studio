@@ -20,6 +20,7 @@ import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { submitContactForm } from '../../_data-access/FormSubmission';
+import { validateTurnstile } from '../../_data-access/TurnstileValidation';
 import {
   TOAST_ERROR_DURATION,
   TOAST_INFO_DURATION,
@@ -32,6 +33,7 @@ interface OwnProps {
     emailAddress: string;
     emailTitle: string;
   };
+  onTokenValidationFailed: () => void;
   token: null | string;
 }
 
@@ -39,6 +41,7 @@ export const ContactForm = (props: OwnProps) => {
   const {
     className,
     fallback: { emailAddress, emailTitle },
+    onTokenValidationFailed,
     token,
   } = props;
   const [isInProgress, setInProgress] = useState(false);
@@ -63,7 +66,53 @@ export const ContactForm = (props: OwnProps) => {
 
   const handleSubmit = useCallback(
     async (data: z.infer<typeof contactFormSchema>) => {
+      if (token === null) {
+        toast({
+          action: (
+            <ToastAction
+              altText="Email us"
+              onClick={() => handleFailSubmit(data)}
+            >
+              Email us
+            </ToastAction>
+          ),
+          description: 'There was a problem with your request.',
+          duration: TOAST_ERROR_DURATION,
+          title: 'Something went wrong.',
+          variant: 'destructive',
+        });
+        return;
+      }
       setInProgress(true);
+      let isValidRequest = false;
+      let errorMessage: string | undefined = undefined;
+      try {
+        const result = await validateTurnstile({ token });
+        errorMessage = result.message;
+        isValidRequest = result.isValid;
+      } catch (e) {
+        errorMessage = 'Failed to validate request.';
+        isValidRequest = false;
+      }
+      if (!isValidRequest) {
+        toast({
+          action: (
+            <ToastAction
+              altText="Email us"
+              onClick={() => handleFailSubmit(data)}
+            >
+              Email us
+            </ToastAction>
+          ),
+          description: errorMessage,
+          duration: TOAST_ERROR_DURATION,
+          title: 'Something went wrong.',
+          variant: 'destructive',
+        });
+        onTokenValidationFailed();
+        setInProgress(false);
+        return;
+      }
       try {
         await submitContactForm(data);
         toast({
@@ -75,10 +124,10 @@ export const ContactForm = (props: OwnProps) => {
         toast({
           action: (
             <ToastAction
-              altText="Try again"
+              altText="Email us"
               onClick={() => handleFailSubmit(data)}
             >
-              Try again
+              Email us
             </ToastAction>
           ),
           description: 'There was a problem with your request.',
@@ -89,7 +138,7 @@ export const ContactForm = (props: OwnProps) => {
       }
       setInProgress(false);
     },
-    [form, handleFailSubmit, toast],
+    [form, handleFailSubmit, onTokenValidationFailed, toast, token],
   );
 
   return (

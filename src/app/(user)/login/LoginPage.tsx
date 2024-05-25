@@ -209,6 +209,7 @@ export const LoginPage = () => {
             </Form>
             <Captcha
               onVerify={handleVerify}
+              refreshExpiredMode="manual"
               sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY ?? ''}
             />
           </div>
@@ -270,6 +271,7 @@ export const LoginPage = () => {
             </Form>
             <Captcha
               onVerify={handleVerify}
+              refreshExpiredMode="manual"
               sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY ?? ''}
             />
           </div>
