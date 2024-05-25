@@ -8,13 +8,13 @@ This is the source code for the Seishinkan Studio 2.0 [website](https://www.seis
 
 ### General/UIUX
 
-- ![Stable](https://progress-bar.dev/100/?title=progress) Navigation (Desktop)
-- ![Stable](https://progress-bar.dev/100/?title=progress) Navigation (Mobile)
+- ![Stable](https://progress-bar.dev/100/?title=stable) Navigation (Desktop)
+- ![Stable](https://progress-bar.dev/100/?title=stable) Navigation (Mobile)
 
 ### Page Development
 
 - ![Progress](https://progress-bar.dev/20/?title=progress) Home Page
-- ![Stable](https://progress-bar.dev/100/?title=progress) About Page
+- ![Stable](https://progress-bar.dev/100/?title=stable) About Page
 - ![Progress](https://progress-bar.dev/20/?title=progress) News & Articles Page
 - ![Progress](https://progress-bar.dev/70/?title=progress) Kendo Page
 - ![Progress](https://progress-bar.dev/20/?title=progress) Studio Rental Page
@@ -31,11 +31,11 @@ This is the source code for the Seishinkan Studio 2.0 [website](https://www.seis
 
 ### Others
 
-- ![Progress](https://progress-bar.dev/0/?title=stable) Analytics Integration
-- ![Progress](https://progress-bar.dev/0/?title=stable) Ads Integration
-- ![Progress](https://progress-bar.dev/0/?title=stable) CMS - Integrate Preview
-- ![Progress](https://progress-bar.dev/0/?title=stable) CMS - Object Storage for Media
-- ![Progress](https://progress-bar.dev/0/?title=stable) Devops - Deployment/Hosting Integration
+- ![Progress](https://progress-bar.dev/0/?title=progress) Analytics Integration
+- ![Progress](https://progress-bar.dev/0/?title=progress) Ads Integration
+- ![Progress](https://progress-bar.dev/0/?title=progress) CMS - Integrate Preview
+- ![Progress](https://progress-bar.dev/0/?title=progress) CMS - Object Storage for Media
+- ![Progress](https://progress-bar.dev/0/?title=progress) Devops - Deployment/Hosting Integration
 - ![Stable](https://progress-bar.dev/100/?title=stable) Devops - Custom PayloadCMS + Next.js 14 Build Workflow
 
 ## Development
