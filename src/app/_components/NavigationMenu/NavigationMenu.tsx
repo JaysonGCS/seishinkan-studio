@@ -10,13 +10,13 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useAtomValue } from 'jotai';
-import { CircleUserRound, Swords, UserRound } from 'lucide-react';
+import { CircleUserRound, LogOut, Swords, UserRound } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import React, { useCallback } from 'react';
 
 import { LoginStatus, loginStateAtom } from '../../_atoms/UserLoginAtoms';
-import { MainPage, isMainPage } from '../../_utils/Paths';
+import { MainPage, OtherPage, isMainPage } from '../../_utils/Paths';
 import { MobileNavigationMenu } from './MobileNavigationMenu';
 import { NavigationLink } from './NavigationLink';
 
@@ -71,6 +71,14 @@ const AccountNavigationMenu = () => {
     router.refresh();
   }, [activePage, router]);
 
+  const handleLogout = useCallback(async () => {
+    // TODO: move to _data-access
+    await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/logout`, {
+      method: 'GET',
+    });
+    router.push(OtherPage.LOGOUT);
+  }, [router]);
+
   return (
     <React.Fragment>
       {loginState === LoginStatus.LOGGED_IN ? (
@@ -91,6 +99,11 @@ const AccountNavigationMenu = () => {
                 <span>Kendo Member Page</span>
               </DropdownMenuItem>
             </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onSelect={handleLogout}>
+              <LogOut className="mr-2 size-4" />
+              <span>Log out</span>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (

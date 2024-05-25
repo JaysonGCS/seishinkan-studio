@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({}, { status: 200 });
   }
   return NextResponse.json(
-    { message: 'Unauthorised access.' },
+    { message: 'Unauthorised access.', reason: validationStatus },
     { status: 403 },
   );
 }

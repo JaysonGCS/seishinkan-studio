@@ -21,6 +21,14 @@ export enum MainPage {
   RENTAL = '/rental',
 }
 
+export enum OtherPage {
+  LOGOUT = '/logout',
+}
+
+export const isOtherPage = (path: string): path is OtherPage => {
+  return Object.values<string>(OtherPage).includes(path);
+};
+
 export const ValidPageSlugRecord: Record<
   keyof GeneratedTypes['globals'],
   keyof GeneratedTypes['globals'] | undefined
