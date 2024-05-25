@@ -245,6 +245,8 @@ export interface AboutPage {
   id: number;
   enabled?: boolean | null;
   heroImage: number | Media;
+  visionDescription: string;
+  missionDescription: string;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -276,6 +278,13 @@ export interface KendoPage {
   id: number;
   enabled?: boolean | null;
   heroImage: number | Media;
+  faqs?:
+    | {
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
   meta?: {
     title?: string | null;
     description?: string | null;
