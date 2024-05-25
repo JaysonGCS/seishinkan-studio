@@ -20,13 +20,16 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useSetAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
+
+import type { CaptchaInnerFunctions } from '../../_components/Captcha/Captcha';
 
 import { LoginStatus, loginStateAtom } from '../../_atoms/UserLoginAtoms';
 import { Captcha } from '../../_components/Captcha/Captcha';
 import { LoadableButton } from '../../_components/LoadableButton/LoadableButton';
 import { Section } from '../../_components/Section/Section';
+import { validateTurnstile } from '../../_data-access/TurnstileValidation';
 import {
   TOAST_ERROR_DURATION,
   TOAST_INFO_DURATION,
@@ -41,9 +44,51 @@ export const LoginPage = () => {
   const router = useRouter();
   const setLoginState = useSetAtom(loginStateAtom);
   const [token, setToken] = useState<null | string>(null);
+  const signUpCaptchaApiRef = useRef<CaptchaInnerFunctions>(null);
+  const loginCaptchaApiRef = useRef<CaptchaInnerFunctions>(null);
 
   const handleVerify = useCallback((token) => {
     setToken(token);
+  }, []);
+
+  const handleExpired = useCallback(() => {
+    setToken(null);
+  }, []);
+
+  const isTokenExist = useCallback((): boolean => {
+    if (token === null) {
+      toast({
+        description: 'There was a problem with your request',
+        duration: TOAST_ERROR_DURATION,
+        title: 'Something went wrong.',
+        variant: 'destructive',
+      });
+      return false;
+    }
+    return true;
+  }, [token]);
+
+  const validateToken = useCallback(async (token: string): Promise<boolean> => {
+    let isValidRequest = false;
+    let errorMessage: string | undefined = undefined;
+    try {
+      const result = await validateTurnstile({ token });
+      errorMessage = result.message;
+      isValidRequest = result.isValid;
+    } catch (e) {
+      errorMessage = 'Failed to validate request.';
+      isValidRequest = false;
+    }
+    if (!isValidRequest) {
+      toast({
+        description: errorMessage,
+        duration: TOAST_ERROR_DURATION,
+        title: 'Something went wrong.',
+        variant: 'destructive',
+      });
+      return false;
+    }
+    return true;
   }, []);
 
   const signUpForm = useForm<z.infer<typeof signUpFormSchema>>({
@@ -65,7 +110,14 @@ export const LoginPage = () => {
 
   const onSignUpSubmit = useCallback(
     async (values: z.infer<typeof signUpFormSchema>) => {
+      if (!isTokenExist()) {
+        return;
+      }
       setInProgress(true);
+      if (token === null || !(await validateToken(token))) {
+        setInProgress(false);
+        return;
+      }
       const resp = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/signup`, {
         body: JSON.stringify(values),
         method: 'POST',
@@ -91,12 +143,19 @@ export const LoginPage = () => {
       }
       setInProgress(false);
     },
-    [signUpForm],
+    [isTokenExist, signUpForm, token, validateToken],
   );
 
   const onLoginSubmit = useCallback(
     async (values: z.infer<typeof loginFormSchema>) => {
+      if (!isTokenExist()) {
+        return;
+      }
       setInProgress(true);
+      if (token === null || !(await validateToken(token))) {
+        setInProgress(false);
+        return;
+      }
       // TODO: move to _data-access
       const resp = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
         body: JSON.stringify(values),
@@ -117,7 +176,7 @@ export const LoginPage = () => {
       }
       setInProgress(false);
     },
-    [router, setLoginState],
+    [isTokenExist, router, setLoginState, token, validateToken],
   );
 
   const handleSwitchToSignUp = useCallback(() => {
@@ -208,7 +267,9 @@ export const LoginPage = () => {
               </form>
             </Form>
             <Captcha
+              onExpired={handleExpired}
               onVerify={handleVerify}
+              ref={signUpCaptchaApiRef}
               refreshExpiredMode="manual"
               sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY ?? ''}
             />
@@ -270,7 +331,9 @@ export const LoginPage = () => {
               </form>
             </Form>
             <Captcha
+              onExpired={handleExpired}
               onVerify={handleVerify}
+              ref={loginCaptchaApiRef}
               refreshExpiredMode="manual"
               sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY ?? ''}
             />
