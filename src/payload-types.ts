@@ -321,6 +321,28 @@ export interface KendoPage {
   id: number;
   enabled?: boolean | null;
   heroImage: number | Media;
+  kendoIntroduction?:
+    | {
+        title: string;
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        description_html?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   faqs?:
     | {
         title: string;
