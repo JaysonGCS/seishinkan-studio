@@ -115,7 +115,7 @@ export const NavigationLink = (props: LinkDetail) => {
 
 const ConditionalWrapper = ({ children, isMobileView, shouldWrapAsList }) => {
   return shouldWrapAsList ? (
-    <ul className={clsx({ absolute: !isMobileView })}>{children}</ul>
+    <ul className={clsx({ 'absolute z-10': !isMobileView })}>{children}</ul>
   ) : (
     children
   );

@@ -18,7 +18,12 @@ import React, { useCallback, useEffect } from 'react';
 import { LoginStatus, loginStateAtom } from '../../_atoms/UserLoginAtoms';
 import { SSK_WEB_LOGIN_STATUS_HEADER } from '../../_utils/Constants';
 import { getCookie } from '../../_utils/General';
-import { MainPage, OtherPage, isMainPage } from '../../_utils/Paths';
+import {
+  MainPage,
+  OtherPage,
+  isMainPage,
+  pageToAnchor,
+} from '../../_utils/Paths';
 import { MobileNavigationMenu } from './MobileNavigationMenu';
 import { NavigationLink } from './NavigationLink';
 
@@ -161,17 +166,17 @@ const LinkList = ({
           {
             name: 'Introduction',
             activeHref: activePage,
-            href: '/kendo/#introduction',
+            href: `${MainPage.KENDO}/${pageToAnchor[MainPage.KENDO].introduction}`,
           },
           {
             name: 'Classes',
             activeHref: activePage,
-            href: '/kendo/#kendo-classes',
+            href: `${MainPage.KENDO}/${pageToAnchor[MainPage.KENDO].classes}`,
           },
           {
             name: 'FAQ',
             activeHref: activePage,
-            href: '/kendo/#faq',
+            href: `${MainPage.KENDO}/${pageToAnchor[MainPage.KENDO].faq}`,
           },
         ]}
         name="Kendo"

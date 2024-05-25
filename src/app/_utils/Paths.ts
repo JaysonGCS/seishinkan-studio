@@ -55,6 +55,14 @@ export const isPageSlug = (
   return ValidPageSlugRecord[pageSlug] !== undefined;
 };
 
+export const pageToAnchor = {
+  [MainPage.KENDO]: {
+    classes: '#kendo-classes',
+    faq: '#faq',
+    introduction: '#introduction',
+  },
+};
+
 export const pageToCollectionSlugRecord: Record<
   MainPage,
   keyof GeneratedTypes['globals']
