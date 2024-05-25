@@ -13,6 +13,7 @@ export interface Config {
     'website-users': WebsiteUser;
     articles: Article;
     'invite-codes': InviteCode;
+    media: Media;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -125,6 +126,66 @@ export interface InviteCode {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    mobileHero?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    halfHero?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    hero?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
@@ -168,6 +229,7 @@ export interface PayloadMigration {
  */
 export interface HomePage {
   id: number;
+  heroImage: number | Media;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -182,6 +244,7 @@ export interface HomePage {
 export interface AboutPage {
   id: number;
   enabled?: boolean | null;
+  heroImage: number | Media;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -196,6 +259,7 @@ export interface AboutPage {
 export interface ContactPage {
   id: number;
   enabled?: boolean | null;
+  heroImage: number | Media;
   googleMapEmbededLink: string;
   meta?: {
     title?: string | null;
@@ -211,6 +275,7 @@ export interface ContactPage {
 export interface KendoPage {
   id: number;
   enabled?: boolean | null;
+  heroImage: number | Media;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -225,6 +290,7 @@ export interface KendoPage {
 export interface NewsAndArticlesPage {
   id: number;
   enabled?: boolean | null;
+  heroImage: number | Media;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -239,6 +305,7 @@ export interface NewsAndArticlesPage {
 export interface RentalPage {
   id: number;
   enabled?: boolean | null;
+  heroImage: number | Media;
   meta?: {
     title?: string | null;
     description?: string | null;
