@@ -13,6 +13,13 @@ export const ContactPage: GlobalConfig = {
       label: 'Enable Page',
     },
     {
+      name: 'heroImage',
+      type: 'upload',
+      label: 'Hero Image (halfHero and mobileHero)',
+      relationTo: 'media',
+      required: true,
+    },
+    {
       name: 'googleMapEmbededLink',
       type: 'text',
       admin: {

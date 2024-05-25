@@ -5,5 +5,13 @@ export const HomePage: GlobalConfig = {
   admin: {
     group: 'Pages',
   },
-  fields: [],
+  fields: [
+    {
+      name: 'heroImage',
+      type: 'upload',
+      label: 'Hero Image (hero, halfHero and mobileHero)',
+      relationTo: 'media',
+      required: true,
+    },
+  ],
 };

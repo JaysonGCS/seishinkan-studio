@@ -10,6 +10,7 @@ import { buildConfig } from 'payload/config';
 import { Articles } from './cms/collections/Articles';
 import { ContactFormRecords } from './cms/collections/ContactFormRecords';
 import { InviteCodes } from './cms/collections/InviteCodes';
+import { Media } from './cms/collections/Media';
 import { Users } from './cms/collections/Users';
 import { WebsiteUsers } from './cms/collections/WebsiteUsers';
 import { DashboardHeader } from './cms/components/DashboardHeader';
@@ -34,7 +35,14 @@ export default buildConfig({
     bundler: webpackBundler(),
     components: { beforeDashboard: [DashboardHeader] },
   },
-  collections: [ContactFormRecords, Users, WebsiteUsers, Articles, InviteCodes],
+  collections: [
+    ContactFormRecords,
+    Users,
+    WebsiteUsers,
+    Articles,
+    InviteCodes,
+    Media,
+  ],
   cookiePrefix: 'ssk',
   db: postgresAdapter({
     pool: {
@@ -74,5 +82,10 @@ export default buildConfig({
   telemetry: false,
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
+  },
+  upload: {
+    limits: {
+      fileSize: 5000000, // 5MB, written in bytes
+    },
   },
 });
