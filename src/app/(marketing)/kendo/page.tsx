@@ -5,7 +5,8 @@ import { HeroSection } from '../../_components/HeroSection/HeroSection';
 import { Section } from '../../_components/Section/Section';
 import { getPageDetails } from '../../_data-access/PageDetails';
 import { getSeoMetadata } from '../../_data-access/SeoMetadata';
-import { MainPage } from '../../_utils/Paths';
+import { MainPage, pageToAnchor } from '../../_utils/Paths';
+import { FaqArea } from './FaqArea';
 
 const PAGE_KEY = MainPage.KENDO;
 
@@ -19,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const KendoPage = async () => {
   const pageDetails = await getPageDetails(PAGE_KEY);
-  const { enabled: isEnabled } = pageDetails;
+  const { enabled: isEnabled, faqs } = pageDetails;
 
   if (!isEnabled) {
     return <DisabledPage />;
@@ -33,7 +34,22 @@ const KendoPage = async () => {
   return (
     <main>
       {showHeroSection ? <HeroSection media={heroImage} /> : null}
-      <Section>Kendo Page</Section>
+      <Section anchor={pageToAnchor[MainPage.KENDO].introduction}>
+        Introduction
+      </Section>
+      <Section anchor={pageToAnchor[MainPage.KENDO].classes} lightTheme>
+        Classes
+      </Section>
+      <Section anchor={pageToAnchor[MainPage.KENDO].classes}>
+        Contact Us
+      </Section>
+      <Section
+        anchor={pageToAnchor[MainPage.KENDO].faq}
+        className="py-14"
+        lightTheme
+      >
+        <FaqArea faqs={faqs} />
+      </Section>
     </main>
   );
 };

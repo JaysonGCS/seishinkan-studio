@@ -34,7 +34,8 @@ export default async function Home() {
   return (
     <main>
       {showHeroSection ? <HeroSection isMainHero media={heroImage} /> : null}
-      <Section>home</Section>
+      <Section>Announcements</Section>
+      <Section lightTheme>Contact Us</Section>
     </main>
   );
 }

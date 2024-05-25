@@ -19,5 +19,17 @@ export const AboutPage: GlobalConfig = {
       relationTo: 'media',
       required: true,
     },
+    {
+      name: 'visionDescription',
+      type: 'textarea',
+      defaultValue: '<tbc>',
+      required: true,
+    },
+    {
+      name: 'missionDescription',
+      type: 'textarea',
+      defaultValue: '<tbc>',
+      required: true,
+    },
   ],
 };
