@@ -8,16 +8,16 @@ This is the source code for the Seishinkan Studio 2.0 [website](https://www.seis
 
 ### General/UIUX
 
-- ![Progress](https://progress-bar.dev/100/?title=progress) Navigation (Desktop)
-- ![Progress](https://progress-bar.dev/50/?title=progress) Navigation (Mobile)
+- ![Stable](https://progress-bar.dev/100/?title=progress) Navigation (Desktop)
+- ![Stable](https://progress-bar.dev/100/?title=progress) Navigation (Mobile)
 
 ### Page Development
 
-- ![Progress](https://progress-bar.dev/0/?title=progress) Home Page
-- ![Progress](https://progress-bar.dev/0/?title=progress) About Page
-- ![Progress](https://progress-bar.dev/0/?title=progress) News & Articles Page
-- ![Progress](https://progress-bar.dev/0/?title=progress) Kendo Page
-- ![Progress](https://progress-bar.dev/0/?title=progress) Studio Rental Page
+- ![Progress](https://progress-bar.dev/20/?title=progress) Home Page
+- ![Stable](https://progress-bar.dev/100/?title=progress) About Page
+- ![Progress](https://progress-bar.dev/20/?title=progress) News & Articles Page
+- ![Progress](https://progress-bar.dev/70/?title=progress) Kendo Page
+- ![Progress](https://progress-bar.dev/20/?title=progress) Studio Rental Page
 - ![Stable](https://progress-bar.dev/100/?title=stable) Contact Page
 - ![Stable](https://progress-bar.dev/100/?title=stable) Login and Signup
 - ![Progress](https://progress-bar.dev/0/?title=progress) Internal Profile Page
@@ -27,7 +27,7 @@ This is the source code for the Seishinkan Studio 2.0 [website](https://www.seis
 
 - ![Stable](https://progress-bar.dev/100/?title=stable) Captcha Mechanism and Strategy
 - ![Stable](https://progress-bar.dev/100/?title=stable) Auth Mechanism
-- ![Progress](https://progress-bar.dev/0/?title=stable) Media Upload and Page Integration
+- ![Stable](https://progress-bar.dev/100/?title=stable) Media Upload and Page Integration
 
 ### Others
 
