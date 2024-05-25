@@ -25,6 +25,8 @@ export const WebsiteUsers: CollectionConfig = {
     useAsTitle: 'email',
   },
   auth: {
+    // 3 days in seconds
+    tokenExpiration: 259200,
     verify: {
       generateEmailHTML: (props) => {
         const { token } = props;

@@ -6,10 +6,17 @@ import jwt from 'jsonwebtoken';
 import { logger } from './Logger';
 export const SSK_WEB_COOKIE_HEADER = 'ssk-web-token';
 
+export enum ValidationStatus {
+  LOGGED_IN,
+  EXPIRED,
+  UNAUTHORISED,
+  UNKNOWN,
+}
+
 export const validateWebAccess = (
   payload: Payload,
   request: NextRequest,
-): boolean => {
+): ValidationStatus => {
   const cookieStore = request.cookies;
   let existingToken;
   if (cookieStore.has(SSK_WEB_COOKIE_HEADER)) {
@@ -17,16 +24,17 @@ export const validateWebAccess = (
     existingToken = tokenCookie;
   }
   if (existingToken === undefined) {
-    return false;
+    return ValidationStatus.UNAUTHORISED;
   }
   try {
     const result = jwt.verify(existingToken.value, payload.secret);
     const expiry = result['exp'];
-    if (expiry) {
-      return Date.now() - expiry > 0;
+    if (expiry && Date.now() - expiry > 0) {
+      return ValidationStatus.LOGGED_IN;
     }
+    return ValidationStatus.EXPIRED;
   } catch (e) {
     logger.error(`Failed to verify JWT token: ${e}`);
   }
-  return false;
+  return ValidationStatus.UNKNOWN;
 };

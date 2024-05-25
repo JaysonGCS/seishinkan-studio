@@ -1,12 +1,18 @@
 import { getPayloadClient } from '@/src/getPayload';
 import { type NextRequest, NextResponse } from 'next/server';
 
-import { validateWebAccess } from '../../_utils/WebsiteAccess';
+import {
+  ValidationStatus,
+  validateWebAccess,
+} from '../../_utils/WebsiteAccess';
 
 export async function GET(request: NextRequest) {
   const payload = await getPayloadClient();
-  const isValidUser = validateWebAccess(payload, request);
-  if (isValidUser) {
+  const validationStatus: ValidationStatus = validateWebAccess(
+    payload,
+    request,
+  );
+  if (validationStatus === ValidationStatus.LOGGED_IN) {
     return NextResponse.json({}, { status: 200 });
   }
   return NextResponse.json(
