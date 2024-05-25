@@ -2,8 +2,7 @@
 
 import { toast } from '@/components/ui/use-toast';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { LoadingSkeleton } from '../../../_components/LoadingSkeleton/LoadingSkeleton';
 import { TOAST_ERROR_DURATION } from '../../../_utils/Constants';
