@@ -4,8 +4,8 @@ import type { Payload } from 'payload';
 import jwt from 'jsonwebtoken';
 
 import { LoginStatus } from '../_atoms/UserLoginAtoms';
+import { SSK_WEB_COOKIE_HEADER } from './Constants';
 import { logger } from './Logger';
-export const SSK_WEB_COOKIE_HEADER = 'ssk-web-token';
 
 export const validateWebAccess = (
   payload: Payload,

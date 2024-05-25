@@ -5,8 +5,8 @@ import { loginFormSchema } from '@/src/validation/emailValidation';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
+import { SSK_WEB_COOKIE_HEADER } from '../../_utils/Constants';
 import { logger } from '../../_utils/Logger';
-import { SSK_WEB_COOKIE_HEADER } from '../../_utils/WebsiteAccess';
 
 export async function POST(request: NextRequest) {
   const payload = await getPayloadClient();
