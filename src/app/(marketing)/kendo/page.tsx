@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import { DisabledPage } from '../../_components/DisabledPage/DisabledPage';
+import { HeroSection } from '../../_components/HeroSection/HeroSection';
 import { Section } from '../../_components/Section/Section';
 import { getPageDetails } from '../../_data-access/PageDetails';
 import { getSeoMetadata } from '../../_data-access/SeoMetadata';
@@ -23,8 +24,15 @@ const KendoPage = async () => {
   if (!isEnabled) {
     return <DisabledPage />;
   }
+  const heroImage = pageDetails.heroImage;
+
+  const showHeroSection = !(
+    typeof heroImage === 'number' || heroImage === undefined
+  );
+
   return (
     <main>
+      {showHeroSection ? <HeroSection media={heroImage} /> : null}
       <Section>Kendo Page</Section>
     </main>
   );

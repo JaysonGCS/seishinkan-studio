@@ -1,7 +1,11 @@
 import type { Metadata } from 'next';
 
+import React from 'react';
+
 import { DisabledPage } from './_components/DisabledPage/DisabledPage';
+import { HeroSection } from './_components/HeroSection/HeroSection';
 import { Section } from './_components/Section/Section';
+import { getPageDetails } from './_data-access/PageDetails';
 import { isPageEnabled } from './_data-access/PageValidation';
 import { getSeoMetadata } from './_data-access/SeoMetadata';
 import { MainPage } from './_utils/Paths';
@@ -21,10 +25,16 @@ export default async function Home() {
   if (!isEnabled) {
     return <DisabledPage />;
   }
+  const pageDetails = await getPageDetails(PAGE_KEY);
+  const heroImage = pageDetails.heroImage;
 
+  const showHeroSection = !(
+    typeof heroImage === 'number' || heroImage === undefined
+  );
   return (
     <main>
-      <Section>Home Page</Section>
+      {showHeroSection ? <HeroSection isMainHero media={heroImage} /> : null}
+      <Section>home</Section>
     </main>
   );
 }

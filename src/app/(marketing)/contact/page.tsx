@@ -4,6 +4,7 @@ import { Mail, MapPinned } from 'lucide-react';
 import React from 'react';
 
 import { DisabledPage } from '../../_components/DisabledPage/DisabledPage';
+import { HeroSection } from '../../_components/HeroSection/HeroSection';
 import { Section } from '../../_components/Section/Section';
 import { getGeneralDetails } from '../../_data-access/GeneralDetails';
 import { getPageDetails } from '../../_data-access/PageDetails';
@@ -30,14 +31,20 @@ const ContactPage = async () => {
   if (!isEnabled) {
     return <DisabledPage />;
   }
+  const heroImage = pageDetails.heroImage;
+
+  const showHeroSection = !(
+    typeof heroImage === 'number' || heroImage === undefined
+  );
   return (
     <main>
+      {showHeroSection ? <HeroSection media={heroImage} /> : null}
       <Section title="Contact Us">
-        <div className="flex w-5/6 flex-col items-center gap-5 lg:w-screen lg:flex-row lg:justify-evenly lg:gap-5">
+        <div className="flex w-5/6 flex-col items-center gap-10 lg:w-screen lg:flex-row lg:justify-evenly lg:gap-5">
           <ContactArea email={email} />
           <div className="flex flex-col gap-3">
             <a
-              className="flex flex-row gap-2 hover:text-accent/90"
+              className="flex w-fit flex-row gap-2 underline hover:text-accent/90"
               href={`mailto:${email}?subject=${DEFAULT_ENQUIRY_EMAIL_TITLE}`}
             >
               <Mail />
