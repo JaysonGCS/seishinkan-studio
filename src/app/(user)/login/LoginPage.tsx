@@ -25,6 +25,7 @@ import { useForm } from 'react-hook-form';
 
 import { LoginStatus, loginStateAtom } from '../../_atoms/UserLoginAtoms';
 import { Captcha } from '../../_components/Captcha/Captcha';
+import { LoadableButton } from '../../_components/LoadableButton/LoadableButton';
 import { Section } from '../../_components/Section/Section';
 import {
   TOAST_ERROR_DURATION,
@@ -39,6 +40,11 @@ export const LoginPage = () => {
   const [isInProgress, setInProgress] = useState(false);
   const router = useRouter();
   const setLoginState = useSetAtom(loginStateAtom);
+  const [token, setToken] = useState<null | string>(null);
+
+  const handleVerify = useCallback((token) => {
+    setToken(token);
+  }, []);
 
   const signUpForm = useForm<z.infer<typeof signUpFormSchema>>({
     defaultValues: {
@@ -116,10 +122,12 @@ export const LoginPage = () => {
 
   const handleSwitchToSignUp = useCallback(() => {
     setLoginStage('SIGNUP');
+    setToken(null);
   }, []);
 
   const handleSwitchToLogin = useCallback(() => {
     setLoginStage('LOGIN');
+    setToken(null);
   }, []);
 
   return (
@@ -182,20 +190,27 @@ export const LoginPage = () => {
                     </FormItem>
                   )}
                 />
-                <Button disabled={isInProgress} type="submit">
-                  Submit
-                </Button>
-                <Button
-                  disabled={isInProgress}
-                  onClick={handleSwitchToLogin}
-                  type="button"
-                  variant="link"
-                >
-                  Back to login
-                </Button>
+                <div className="flex flex-row items-center">
+                  <LoadableButton
+                    className="min-w-32"
+                    disabled={token === null || isInProgress}
+                    isLoading={token === null}
+                  />
+                  <Button
+                    disabled={token === null || isInProgress}
+                    onClick={handleSwitchToLogin}
+                    type="button"
+                    variant="link"
+                  >
+                    Back to login
+                  </Button>
+                </div>
               </form>
             </Form>
-            <Captcha sitekey={process.env.CAPTCHA_SITE_KEY ?? ''} />
+            <Captcha
+              onVerify={handleVerify}
+              sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY ?? ''}
+            />
           </div>
         ) : (
           <div className="flex flex-col gap-3" key={`${LoginPage.name}-login`}>
@@ -236,20 +251,27 @@ export const LoginPage = () => {
                     </FormItem>
                   )}
                 />
-                <Button disabled={isInProgress} type="submit">
-                  Submit
-                </Button>
-                <Button
-                  disabled={isInProgress}
-                  onClick={handleSwitchToSignUp}
-                  type="button"
-                  variant="link"
-                >
-                  Create account
-                </Button>
+                <div className="flex flex-row items-center">
+                  <LoadableButton
+                    className="min-w-32"
+                    disabled={token === null || isInProgress}
+                    isLoading={token === null}
+                  />
+                  <Button
+                    disabled={token === null || isInProgress}
+                    onClick={handleSwitchToSignUp}
+                    type="button"
+                    variant="link"
+                  >
+                    Create account
+                  </Button>
+                </div>
               </form>
             </Form>
-            <Captcha sitekey={process.env.CAPTCHA_SITE_KEY ?? ''} />
+            <Captcha
+              onVerify={handleVerify}
+              sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY ?? ''}
+            />
           </div>
         )}
       </div>

@@ -2,7 +2,6 @@
 
 import type { z } from 'zod';
 
-import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -17,7 +16,7 @@ import { ToastAction } from '@/components/ui/toast';
 import { useToast } from '@/components/ui/use-toast';
 import { contactFormSchema } from '@/src/validation/contactFormValidation';
 import { zodResolver } from '@hookform/resolvers/zod';
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { submitContactForm } from '../../_data-access/FormSubmission';
@@ -25,6 +24,7 @@ import {
   TOAST_ERROR_DURATION,
   TOAST_INFO_DURATION,
 } from '../../_utils/Constants';
+import { LoadableButton } from '../LoadableButton/LoadableButton';
 
 interface OwnProps {
   className?: string;
@@ -32,12 +32,14 @@ interface OwnProps {
     emailAddress: string;
     emailTitle: string;
   };
+  token: null | string;
 }
 
 export const ContactForm = (props: OwnProps) => {
   const {
     className,
     fallback: { emailAddress, emailTitle },
+    token,
   } = props;
   const [isInProgress, setInProgress] = useState(false);
   const { toast } = useToast();
@@ -139,9 +141,11 @@ export const ContactForm = (props: OwnProps) => {
             </FormItem>
           )}
         />
-        <Button className="w-full" disabled={isInProgress} type="submit">
-          Submit
-        </Button>
+        <LoadableButton
+          className="w-full"
+          disabled={token === null || isInProgress}
+          isLoading={token === null}
+        />
       </form>
     </Form>
   );

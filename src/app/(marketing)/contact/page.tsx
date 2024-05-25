@@ -3,8 +3,6 @@ import type { Metadata } from 'next';
 import { Mail, MapPinned } from 'lucide-react';
 import React from 'react';
 
-import { Captcha } from '../../_components/Captcha/Captcha';
-import { ContactForm } from '../../_components/ContactForm/ContactForm';
 import { DisabledPage } from '../../_components/DisabledPage/DisabledPage';
 import { Section } from '../../_components/Section/Section';
 import { getGeneralDetails } from '../../_data-access/GeneralDetails';
@@ -12,6 +10,7 @@ import { getPageDetails } from '../../_data-access/PageDetails';
 import { getSeoMetadata } from '../../_data-access/SeoMetadata';
 import { DEFAULT_ENQUIRY_EMAIL_TITLE } from '../../_utils/Constants';
 import { MainPage } from '../../_utils/Paths';
+import { ContactArea } from './ContactArea';
 
 const PAGE_KEY = MainPage.CONTACT;
 
@@ -35,16 +34,7 @@ const ContactPage = async () => {
     <main>
       <Section title="Contact Us">
         <div className="flex w-5/6 flex-col items-center gap-5 lg:w-screen lg:flex-row lg:justify-evenly lg:gap-5">
-          <div className="flex flex-col gap-3">
-            <ContactForm
-              className="w-full max-w-[600px] lg:w-[45vw]"
-              fallback={{
-                emailAddress: email,
-                emailTitle: DEFAULT_ENQUIRY_EMAIL_TITLE,
-              }}
-            />
-            <Captcha sitekey={process.env.CAPTCHA_SITE_KEY ?? ''} />
-          </div>
+          <ContactArea email={email} />
           <div className="flex flex-col gap-3">
             <a
               className="flex flex-row gap-2 hover:text-accent/90"
