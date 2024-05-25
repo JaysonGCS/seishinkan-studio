@@ -1,0 +1,3 @@
+.link:not(:hover) > *:nth-child(2) {
+  display: none;
+}

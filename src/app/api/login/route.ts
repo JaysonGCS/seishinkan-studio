@@ -1,0 +1,67 @@
+import type { NextRequest } from 'next/server';
+
+import { getPayloadClient } from '@/src/getPayload';
+import { loginFormSchema } from '@/src/validation/emailValidation';
+import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server';
+
+import { logger } from '../../_utils/Logger';
+import { SSK_WEB_COOKIE_HEADER } from '../../_utils/WebsiteAccess';
+
+export async function POST(request: NextRequest) {
+  const payload = await getPayloadClient();
+  const body = await request.json();
+  const { email, password } = loginFormSchema.parse(body);
+
+  try {
+    const validateVerifiedUser = await payload.find({
+      collection: 'website-users',
+      where: {
+        _verified: { equals: true },
+        email: { equals: email.toLowerCase() },
+      },
+    });
+    if (validateVerifiedUser.totalDocs === 1) {
+      const req = await payload.login({
+        collection: 'website-users',
+        data: { email: validateVerifiedUser.docs[0].email, password },
+      });
+
+      const partialResponseCookie = {};
+      const collectionDetails = payload.config.collections.find(
+        (collection) => collection.slug === 'website-users',
+      );
+      if (collectionDetails) {
+        if (collectionDetails.auth.cookies.domain) {
+          partialResponseCookie['domain'] =
+            collectionDetails.auth.cookies.domain;
+        }
+        partialResponseCookie['sameSite'] =
+          collectionDetails.auth.cookies.sameSite;
+        partialResponseCookie['secure'] = collectionDetails.auth.cookies.secure;
+      }
+
+      const token = req.token;
+      const exp = req.exp;
+      if (token === undefined || token === null) {
+        throw new Error('Invalid user token');
+      }
+      cookies().set(SSK_WEB_COOKIE_HEADER, token, {
+        expires: new Date(exp * 1000),
+        httpOnly: true,
+        path: '/',
+        ...partialResponseCookie,
+      });
+      return NextResponse.json({}, { status: 200 });
+    } else {
+      logger.error(`Unauthorised user - ${email}`);
+      return NextResponse.json({ message: 'Unauthorised.' }, { status: 401 });
+    }
+  } catch (e) {
+    logger.error(e);
+    return NextResponse.json(
+      { message: 'Internal Server Error' },
+      { status: 500 },
+    );
+  }
+}

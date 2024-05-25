@@ -1,0 +1,24 @@
+{
+  "root": true,
+  "extends": [
+    "plugin:@next/next/recommended",
+    "plugin:tailwindcss/recommended",
+    "@payloadcms"
+  ],
+  "plugins": ["prettier"],
+  "ignorePatterns": [
+    "**/payload-types.ts",
+    "node_modules/",
+    "dist/",
+    "build/",
+    ".next/"
+  ],
+  "rules": {
+    "@typescript-eslint/no-floating-promises": "off",
+    "react/react-in-jsx-scope": "off",
+    "prettier/prettier": "error"
+  },
+  "parserOptions": {
+    "project": ["tsconfig.json"]
+  }
+}
