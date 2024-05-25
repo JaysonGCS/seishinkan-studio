@@ -5,7 +5,7 @@
     "plugin:tailwindcss/recommended",
     "@payloadcms"
   ],
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "import"],
   "ignorePatterns": [
     "**/payload-types.ts",
     "node_modules/",
@@ -16,7 +16,8 @@
   "rules": {
     "@typescript-eslint/no-floating-promises": "off",
     "react/react-in-jsx-scope": "off",
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "import/no-duplicates": "error"
   },
   "parserOptions": {
     "project": ["tsconfig.json"]
