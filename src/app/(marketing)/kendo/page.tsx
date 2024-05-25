@@ -3,9 +3,11 @@ import type { Metadata } from 'next';
 import { DisabledPage } from '../../_components/DisabledPage/DisabledPage';
 import { HeroSection } from '../../_components/HeroSection/HeroSection';
 import { Section } from '../../_components/Section/Section';
+import { getGeneralDetails } from '../../_data-access/GeneralDetails';
 import { getPageDetails } from '../../_data-access/PageDetails';
 import { getSeoMetadata } from '../../_data-access/SeoMetadata';
 import { MainPage, pageToAnchor } from '../../_utils/Paths';
+import { ContactArea } from '../contact/ContactArea';
 import { FaqArea } from './FaqArea';
 import { IntroductionArea } from './IntroductionArea';
 
@@ -26,6 +28,8 @@ const KendoPage = async () => {
   if (!isEnabled) {
     return <DisabledPage />;
   }
+  const { email } = await getGeneralDetails();
+
   const heroImage = pageDetails.heroImage;
 
   const showHeroSection = !(
@@ -42,7 +46,9 @@ const KendoPage = async () => {
         Classes
       </Section>
       <Section anchor={pageToAnchor[MainPage.KENDO].classes}>
-        Contact Us
+        <h1>Join our Kendo Community</h1>
+        {/* TODO: Refactor or relocate ContactArea to be reused properly */}
+        <ContactArea email={email} />
       </Section>
       <Section anchor={pageToAnchor[MainPage.KENDO].faq} lightTheme>
         <FaqArea faqs={faqs} />
