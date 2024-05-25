@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import React from 'react';
+
 import { DisabledPage } from '../../_components/DisabledPage/DisabledPage';
 import { Section } from '../../_components/Section/Section';
 import { getPageDetails } from '../../_data-access/PageDetails';
