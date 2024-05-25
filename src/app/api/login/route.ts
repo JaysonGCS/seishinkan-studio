@@ -5,7 +5,10 @@ import { loginFormSchema } from '@/src/validation/emailValidation';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
-import { SSK_WEB_COOKIE_HEADER } from '../../_utils/Constants';
+import {
+  SSK_WEB_COOKIE_HEADER,
+  SSK_WEB_LOGIN_STATUS_HEADER,
+} from '../../_utils/Constants';
 import { logger } from '../../_utils/Logger';
 
 export async function POST(request: NextRequest) {
@@ -51,6 +54,10 @@ export async function POST(request: NextRequest) {
         httpOnly: true,
         path: '/',
         ...partialResponseCookie,
+      });
+      cookies().set(SSK_WEB_LOGIN_STATUS_HEADER, String(true), {
+        httpOnly: false,
+        path: '/',
       });
       return NextResponse.json({}, { status: 200 });
     } else {

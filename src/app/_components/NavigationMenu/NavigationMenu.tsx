@@ -9,13 +9,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { CircleUserRound, LogOut, Swords, UserRound } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { LoginStatus, loginStateAtom } from '../../_atoms/UserLoginAtoms';
+import { SSK_WEB_LOGIN_STATUS_HEADER } from '../../_utils/Constants';
+import { getCookie } from '../../_utils/General';
 import { MainPage, OtherPage, isMainPage } from '../../_utils/Paths';
 import { MobileNavigationMenu } from './MobileNavigationMenu';
 import { NavigationLink } from './NavigationLink';
@@ -23,6 +25,15 @@ import { NavigationLink } from './NavigationLink';
 export const NavigationMenu = () => {
   const currentPath = usePathname();
   const activePage = isMainPage(currentPath) ? currentPath : MainPage.HOME;
+  const setLoginState = useSetAtom(loginStateAtom);
+
+  useEffect(() => {
+    // TODO: research to see if this can be replaced with jotai effects
+    const loginStatusCookie = getCookie(SSK_WEB_LOGIN_STATUS_HEADER);
+    if (loginStatusCookie === String(true)) {
+      setLoginState(LoginStatus.LOGGED_IN);
+    }
+  }, [setLoginState]);
 
   return (
     <React.Fragment>
