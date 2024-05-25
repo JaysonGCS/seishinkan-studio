@@ -1,4 +1,4 @@
-# Seishinkan Website
+# Seishinkan Studio 2.0
 
 ## About
 
