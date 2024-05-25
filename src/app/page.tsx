@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import { DisabledPage } from './_components/DisabledPage/DisabledPage';
+import { Section } from './_components/Section/Section';
 import { isPageEnabled } from './_data-access/PageValidation';
 import { getSeoMetadata } from './_data-access/SeoMetadata';
 import { MainPage } from './_utils/Paths';
@@ -21,5 +22,9 @@ export default async function Home() {
     return <DisabledPage />;
   }
 
-  return <main>Home Page</main>;
+  return (
+    <main>
+      <Section>Home Page</Section>
+    </main>
+  );
 }

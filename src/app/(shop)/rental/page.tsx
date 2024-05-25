@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import { DisabledPage } from '../../_components/DisabledPage/DisabledPage';
+import { Section } from '../../_components/Section/Section';
 import { getPageDetails } from '../../_data-access/PageDetails';
 import { getSeoMetadata } from '../../_data-access/SeoMetadata';
 import { MainPage } from '../../_utils/Paths';
@@ -22,7 +23,11 @@ const RentalPage = async () => {
   if (!isEnabled) {
     return <DisabledPage />;
   }
-  return <main>Rental Page</main>;
+  return (
+    <main>
+      <Section>Rental Page</Section>
+    </main>
+  );
 };
 
 export default RentalPage;
