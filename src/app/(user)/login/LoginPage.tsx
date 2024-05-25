@@ -24,6 +24,7 @@ import React, { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { LoginStatus, loginStateAtom } from '../../_atoms/UserLoginAtoms';
+import { Captcha } from '../../_components/Captcha/Captcha';
 import { Section } from '../../_components/Section/Section';
 import {
   TOAST_ERROR_DURATION,
@@ -125,76 +126,79 @@ export const LoginPage = () => {
     <Section>
       <div className="w-5/6 lg:w-6/12">
         {loginStage === 'SIGNUP' ? (
-          <Form key={`${LoginPage.name}-signup`} {...signUpForm}>
-            <form
-              className="space-y-8"
-              onSubmit={signUpForm.handleSubmit(onSignUpSubmit)}
-            >
-              <FormField
-                control={signUpForm.control}
-                disabled={isInProgress}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Login Email" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={signUpForm.control}
-                disabled={isInProgress}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Password"
-                        type="password"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={signUpForm.control}
-                disabled={isInProgress}
-                name="confirm"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Confirm Password</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Password Confirmation"
-                        type="password"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button disabled={isInProgress} type="submit">
-                Submit
-              </Button>
-              <Button
-                disabled={isInProgress}
-                onClick={handleSwitchToLogin}
-                type="button"
-                variant="link"
+          <div className="flex flex-col gap-3">
+            <Form key={`${LoginPage.name}-signup`} {...signUpForm}>
+              <form
+                className="space-y-8"
+                onSubmit={signUpForm.handleSubmit(onSignUpSubmit)}
               >
-                Back to login
-              </Button>
-            </form>
-          </Form>
+                <FormField
+                  control={signUpForm.control}
+                  disabled={isInProgress}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Login Email" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={signUpForm.control}
+                  disabled={isInProgress}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Password"
+                          type="password"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={signUpForm.control}
+                  disabled={isInProgress}
+                  name="confirm"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Confirm Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Password Confirmation"
+                          type="password"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button disabled={isInProgress} type="submit">
+                  Submit
+                </Button>
+                <Button
+                  disabled={isInProgress}
+                  onClick={handleSwitchToLogin}
+                  type="button"
+                  variant="link"
+                >
+                  Back to login
+                </Button>
+              </form>
+            </Form>
+            <Captcha sitekey={process.env.CAPTCHA_SITE_KEY ?? ''} />
+          </div>
         ) : (
-          <React.Fragment key={`${LoginPage.name}-login`}>
+          <div className="flex flex-col gap-3" key={`${LoginPage.name}-login`}>
             <Form {...loginForm}>
               <form
                 className="space-y-8"
@@ -245,7 +249,8 @@ export const LoginPage = () => {
                 </Button>
               </form>
             </Form>
-          </React.Fragment>
+            <Captcha sitekey={process.env.CAPTCHA_SITE_KEY ?? ''} />
+          </div>
         )}
       </div>
     </Section>
