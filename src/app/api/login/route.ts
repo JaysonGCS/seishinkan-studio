@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
         throw new Error('Invalid user token');
       }
       cookies().set(SSK_WEB_COOKIE_HEADER, token, {
-        expires: new Date(exp * 1000),
+        expires: exp ? new Date(exp * 1000) : undefined,
         httpOnly: true,
         path: '/',
         ...partialResponseCookie,

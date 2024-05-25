@@ -18,7 +18,9 @@ export interface LinkDetail {
 
 export const NavigationLink = (props: LinkDetail) => {
   const { activeHref, isMobileView = false } = props;
-  const [selectedParent, setSelectedParent] = useState<string>(undefined);
+  const [selectedParent, setSelectedParent] = useState<string | undefined>(
+    undefined,
+  );
 
   const linkDetailsProp = useMemo(() => {
     return [props];

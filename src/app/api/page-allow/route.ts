@@ -37,6 +37,9 @@ const collectionToPayloadValidationRecord: Record<
   'contact-page': async (payload) => {
     return (await payload.findGlobal({ slug: 'contact-page' })).enabled ?? true;
   },
+  general(): Promise<boolean> {
+    throw new Error('Function not implemented.');
+  },
   'home-page': () => {
     return Promise.resolve(true);
   },

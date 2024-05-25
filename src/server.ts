@@ -19,8 +19,8 @@ const start = async (): Promise<void> => {
   const payload = await getPayloadClient({
     initOptions: {
       email: {
-        fromAddress: process.env.EMAIL_FROM,
-        fromName: process.env.EMAIL_NAME,
+        fromAddress: process.env.EMAIL_FROM ?? '',
+        fromName: process.env.EMAIL_NAME ?? '',
         transportOptions: {
           auth: {
             pass: process.env.EMAIL_SERVER_PASSWORD,
