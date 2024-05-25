@@ -18,7 +18,7 @@ export async function POST(request: Request) {
   const collection = pageToCollectionSlugRecord[page];
   const payload = await getPayloadClient();
   try {
-    const seoMetadata: SeoMetadata =
+    const seoMetadata: SeoMetadata | undefined =
       await collectionToPayloadValidationRecord[collection](payload);
     return NextResponse.json(seoMetadata);
   } catch (e) {
@@ -32,13 +32,16 @@ export async function POST(request: Request) {
 
 const collectionToPayloadValidationRecord: Record<
   keyof GeneratedTypes['globals'],
-  (payload: Payload) => Promise<SeoMetadata>
+  (payload: Payload) => Promise<SeoMetadata | undefined>
 > = {
   'about-page': async (payload) => {
     return (await payload.findGlobal({ slug: 'about-page' })).meta;
   },
   'contact-page': async (payload) => {
     return (await payload.findGlobal({ slug: 'contact-page' })).meta;
+  },
+  general: () => {
+    throw new Error('Function not implemented.');
   },
   'home-page': async (payload) => {
     return (await payload.findGlobal({ slug: 'home-page' })).meta;
