@@ -28,23 +28,26 @@ export const ContactArea = (props: OwnProps) => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-3">
-      <ContactForm
-        className="w-full max-w-[600px] lg:w-[45vw]"
-        fallback={{
-          emailAddress: email,
-          emailTitle: DEFAULT_ENQUIRY_EMAIL_TITLE,
-        }}
-        onTokenValidationFailed={handleTokenValidationFailed}
-        token={token}
-      />
-      <Captcha
-        onExpired={handleExpired}
-        onVerify={handleVerify}
-        ref={captchaApiRef}
-        refreshExpiredMode="manual"
-        sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY ?? ''}
-      />
-    </div>
+    <React.Fragment>
+      <div className="flex w-full flex-col items-center gap-3 lg:w-auto">
+        <ContactForm
+          className="w-full max-w-[600px] lg:w-[45vw]"
+          fallback={{
+            emailAddress: email,
+            emailTitle: DEFAULT_ENQUIRY_EMAIL_TITLE,
+          }}
+          onTokenValidationFailed={handleTokenValidationFailed}
+          token={token}
+        />
+        <Captcha
+          className="lg:self-start"
+          onExpired={handleExpired}
+          onVerify={handleVerify}
+          ref={captchaApiRef}
+          refreshExpiredMode="manual"
+          sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY ?? ''}
+        />
+      </div>
+    </React.Fragment>
   );
 };
