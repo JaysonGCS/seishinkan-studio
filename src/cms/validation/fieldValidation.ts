@@ -16,3 +16,12 @@ export const validatePayloadUrlField: Validate = (val: string) => {
     }
   }
 };
+
+export const validateEmailField: Validate = (email) => {
+  if (email === undefined) {
+    return false;
+  }
+  return email.match(
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])|(([a-zA-Z\-\d]+\.)+[a-zA-Z]{2,}))$/,
+  );
+};

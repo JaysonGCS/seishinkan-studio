@@ -25,6 +25,7 @@ export interface Config {
     'rental-page': RentalPage;
     'login-page': LoginPage;
     'member-page': MemberPage;
+    general: General;
     'social-media': SocialMedia;
   };
 }
@@ -267,6 +268,17 @@ export interface MemberPage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "general".
+ */
+export interface General {
+  id: number;
+  email: string;
+  address: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "social-media".
  */
 export interface SocialMedia {
@@ -277,6 +289,7 @@ export interface SocialMedia {
   updatedAt?: string | null;
   createdAt?: string | null;
 }
+
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}

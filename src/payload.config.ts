@@ -13,6 +13,7 @@ import { InviteCodes } from './cms/collections/InviteCodes';
 import { Users } from './cms/collections/Users';
 import { WebsiteUsers } from './cms/collections/WebsiteUsers';
 import { DashboardHeader } from './cms/components/DashboardHeader';
+import { General } from './cms/globals/General';
 import { SocialMedia } from './cms/globals/SocialMedia';
 import { AboutPage } from './cms/globals/pages/AboutPage';
 import { ContactPage } from './cms/globals/pages/ContactPage';
@@ -50,6 +51,7 @@ export default buildConfig({
     RentalPage,
     LoginPage,
     MemberPage,
+    General,
     SocialMedia,
   ],
   plugins: [

@@ -35,6 +35,7 @@ export const ValidPageSlugRecord: Record<
 > = {
   'about-page': 'about-page',
   'contact-page': 'contact-page',
+  general: undefined,
   'home-page': 'home-page',
   'kendo-page': 'kendo-page',
   'login-page': 'login-page',

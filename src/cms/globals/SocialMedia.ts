@@ -2,7 +2,7 @@ import type { GlobalConfig } from 'payload/types';
 
 import { admins } from '../collections/access/admins';
 import { anyone } from '../collections/access/anyone';
-import { validatePayloadUrlField } from '../validation/urlValidation';
+import { validatePayloadUrlField } from '../validation/fieldValidation';
 
 export const SocialMedia: GlobalConfig = {
   slug: 'social-media',
