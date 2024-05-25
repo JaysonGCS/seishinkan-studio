@@ -13,6 +13,7 @@ export interface Config {
     'website-users': WebsiteUser;
     articles: Article;
     'invite-codes': InviteCode;
+    'profile-media': ProfileMedia;
     media: Media;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -123,6 +124,34 @@ export interface InviteCode {
   usageCounter?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "profile-media".
+ */
+export interface ProfileMedia {
+  id: number;
+  alt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -247,6 +276,20 @@ export interface AboutPage {
   heroImage: number | Media;
   visionDescription: string;
   missionDescription: string;
+  team: {
+    profileImage: number | ProfileMedia;
+    name: string;
+    title?: string | null;
+    introduction: string;
+    achievements?:
+      | {
+          title: string;
+          description: string;
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+  }[];
   meta?: {
     title?: string | null;
     description?: string | null;
