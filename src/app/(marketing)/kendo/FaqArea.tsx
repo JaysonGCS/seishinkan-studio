@@ -17,7 +17,7 @@ export const FaqArea = (props: OwnProps) => {
   const faqList = faqs?.map((faq) => {
     const { description, title } = faq;
     return (
-      <AccordionItem value={title}>
+      <AccordionItem key={`kendo-page-faq-${faq.title}`} value={title}>
         <AccordionTrigger>{title}</AccordionTrigger>
         <AccordionContent>{description}</AccordionContent>
       </AccordionItem>
