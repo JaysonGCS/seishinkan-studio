@@ -57,9 +57,9 @@ export const isPageSlug = (
 
 export const pageToAnchor = {
   [MainPage.KENDO]: {
-    classes: '#kendo-classes',
-    faq: '#faq',
-    introduction: '#introduction',
+    classes: 'kendo-classes',
+    faq: 'faq',
+    introduction: 'introduction',
   },
 };
 

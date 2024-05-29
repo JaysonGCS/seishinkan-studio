@@ -29,7 +29,7 @@ export const ContactArea = (props: OwnProps) => {
 
   return (
     <React.Fragment>
-      <div className="flex w-full flex-col items-center gap-3 lg:w-auto">
+      <div className="flex w-full flex-col items-center gap-3 py-8 lg:w-auto">
         <ContactForm
           className="w-full max-w-[600px] lg:w-[45vw]"
           fallback={{

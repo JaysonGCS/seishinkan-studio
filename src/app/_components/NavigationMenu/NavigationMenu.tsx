@@ -166,17 +166,17 @@ const LinkList = ({
           {
             name: 'Introduction',
             activeHref: activePage,
-            href: `${MainPage.KENDO}/${pageToAnchor[MainPage.KENDO].introduction}`,
+            href: `${MainPage.KENDO}/#${pageToAnchor[MainPage.KENDO].introduction}`,
           },
           {
             name: 'Classes',
             activeHref: activePage,
-            href: `${MainPage.KENDO}/${pageToAnchor[MainPage.KENDO].classes}`,
+            href: `${MainPage.KENDO}/#${pageToAnchor[MainPage.KENDO].classes}`,
           },
           {
             name: 'FAQ',
             activeHref: activePage,
-            href: `${MainPage.KENDO}/${pageToAnchor[MainPage.KENDO].faq}`,
+            href: `${MainPage.KENDO}/#${pageToAnchor[MainPage.KENDO].faq}`,
           },
         ]}
         name="Kendo"
