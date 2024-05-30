@@ -8,6 +8,7 @@ import { getPageDetails } from '../../_data-access/PageDetails';
 import { getSeoMetadata } from '../../_data-access/SeoMetadata';
 import { MainPage, pageToAnchor } from '../../_utils/Paths';
 import { ContactArea } from '../contact/ContactArea';
+import { ClassesArea } from './ClassesArea';
 import { FaqArea } from './FaqArea';
 import { IntroductionArea } from './IntroductionArea';
 
@@ -23,7 +24,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const KendoPage = async () => {
   const pageDetails = await getPageDetails(PAGE_KEY);
-  const { enabled: isEnabled, faqs, kendoIntroduction } = pageDetails;
+  const {
+    enabled: isEnabled,
+    faqs,
+    kendoClasses,
+    kendoIntroduction,
+  } = pageDetails;
 
   if (!isEnabled) {
     return <DisabledPage />;
@@ -43,7 +49,7 @@ const KendoPage = async () => {
         <IntroductionArea kendoIntroduction={kendoIntroduction} />
       </Section>
       <Section anchor={pageToAnchor[MainPage.KENDO].classes} lightTheme>
-        Classes
+        <ClassesArea kendoClasses={kendoClasses} />
       </Section>
       <Section anchor={pageToAnchor[MainPage.KENDO].classes}>
         <h1>Join our Kendo Community</h1>

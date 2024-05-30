@@ -321,28 +321,52 @@ export interface KendoPage {
   id: number;
   enabled?: boolean | null;
   heroImage: number | Media;
-  kendoIntroduction?:
-    | {
-        title: string;
-        description?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
+  kendoIntroduction: {
+    title: string;
+    description: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
           [k: string]: unknown;
-        } | null;
-        description_html?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    description_html?: string | null;
+    id?: string | null;
+  }[];
+  kendoClasses: {
+    title: string;
+    classSchedule: {
+      title: string;
+      startTime: string;
+      endTime?: string | null;
+      id?: string | null;
+    }[];
+    description: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    description_html?: string | null;
+    id?: string | null;
+  }[];
   faqs?:
     | {
         title: string;
