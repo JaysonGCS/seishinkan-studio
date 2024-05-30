@@ -24,6 +24,7 @@ export const InviteCodes: CollectionConfig = {
       'createdAt',
       'updatedAt',
     ],
+    group: 'Website User Management',
     useAsTitle: 'inviteCode',
   },
   fields: [

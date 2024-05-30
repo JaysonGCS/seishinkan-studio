@@ -10,6 +10,9 @@ export const Media: CollectionConfig = {
     read: anyone,
     update: admins,
   },
+  admin: {
+    group: 'Media Resource',
+  },
   fields: [
     {
       name: 'alt',

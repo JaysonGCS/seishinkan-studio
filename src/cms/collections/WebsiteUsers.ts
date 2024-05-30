@@ -22,6 +22,7 @@ export const WebsiteUsers: CollectionConfig = {
       'updatedAt',
       '_verified',
     ],
+    group: 'Website User Management',
     useAsTitle: 'email',
   },
   auth: {

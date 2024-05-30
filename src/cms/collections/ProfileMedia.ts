@@ -10,13 +10,16 @@ export const ProfileMedia: CollectionConfig = {
     read: anyone,
     update: admins,
   },
+  admin: {
+    group: 'Media Resource',
+  },
   fields: [
     {
       name: 'alt',
       type: 'text',
     },
   ],
-  labels: { plural: 'profile-media', singular: 'profile-media' },
+  labels: { plural: 'Profile Media', singular: 'Profile Media' },
   upload: {
     adminThumbnail: 'thumbnail',
     imageSizes: [
