@@ -19,5 +19,13 @@ export const NewsAndArticlesPage: GlobalConfig = {
       relationTo: 'media',
       required: true,
     },
+    {
+      name: 'pinnedArticles',
+      type: 'relationship',
+      hasMany: true,
+      label: 'Pinned Article',
+      maxRows: 3,
+      relationTo: 'articles',
+    },
   ],
 };

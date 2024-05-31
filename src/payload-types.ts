@@ -389,6 +389,7 @@ export interface NewsAndArticlesPage {
   id: number;
   enabled?: boolean | null;
   heroImage: number | Media;
+  pinnedArticles?: (number | Article)[] | null;
   meta?: {
     title?: string | null;
     description?: string | null;
