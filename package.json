@@ -61,6 +61,7 @@
     "react-loading-skeleton": "^3.4.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
+    "ts-deepmerge": "^7.0.0",
     "vaul": "^0.9.1",
     "winston": "^3.13.0",
     "zod": "^3.23.8"
