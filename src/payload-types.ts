@@ -91,6 +91,8 @@ export interface WebsiteUser {
 export interface Article {
   id: number;
   title: string;
+  slug?: string | null;
+  summary: string;
   content: {
     root: {
       type: string;
@@ -106,6 +108,7 @@ export interface Article {
     };
     [k: string]: unknown;
   };
+  content_html?: string | null;
   meta?: {
     title?: string | null;
     description?: string | null;
