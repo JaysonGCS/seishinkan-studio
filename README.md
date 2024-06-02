@@ -15,8 +15,8 @@ This is the source code for the Seishinkan Studio 2.0 [website](https://www.seis
 
 - ![Progress](https://progress-bar.dev/20/?title=progress) Home Page
 - ![Stable](https://progress-bar.dev/100/?title=stable) About Page
-- ![Progress](https://progress-bar.dev/20/?title=progress) News & Articles Page
-- ![Progress](https://progress-bar.dev/70/?title=progress) Kendo Page
+- ![Progress](https://progress-bar.dev/70/?title=progress) News & Articles Page
+- ![Stable](https://progress-bar.dev/100/?title=stable) Kendo Page
 - ![Progress](https://progress-bar.dev/20/?title=progress) Studio Rental Page
 - ![Stable](https://progress-bar.dev/100/?title=stable) Contact Page
 - ![Stable](https://progress-bar.dev/100/?title=stable) Login and Signup
