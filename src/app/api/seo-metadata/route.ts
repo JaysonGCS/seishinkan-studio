@@ -1,7 +1,7 @@
 import type { GeneratedTypes, Payload } from 'payload';
 
 import { getPayloadClient } from '@/src/getPayload';
-import { pageVerificationSchema } from '@/src/validation/pageValidation';
+import { seoVerificationSchema } from '@/src/validation/pageValidation';
 import { NextResponse } from 'next/server';
 
 import { logger } from '../../_utils/Logger';
@@ -14,7 +14,7 @@ export type SeoMetadata = {
 
 export async function POST(request: Request) {
   const body = await request.json();
-  const { page } = pageVerificationSchema.parse(body);
+  const { page } = seoVerificationSchema.parse(body);
   const collection = pageToCollectionSlugRecord[page];
   const payload = await getPayloadClient();
   try {

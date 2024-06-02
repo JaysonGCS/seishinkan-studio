@@ -62,4 +62,8 @@
   body {
     @apply bg-accent text-accent-foreground;
   }
+  picture {
+    display: flex;
+    justify-content: center;
+  }
 }
