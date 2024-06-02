@@ -21,6 +21,7 @@ import { getCookie } from '../../_utils/General';
 import {
   MainPage,
   OtherPage,
+  getMainPath,
   isMainPage,
   pageToAnchor,
 } from '../../_utils/Paths';
@@ -29,7 +30,10 @@ import { NavigationLink } from './NavigationLink';
 
 export const NavigationMenu = () => {
   const currentPath = usePathname();
-  const activePage = isMainPage(currentPath) ? currentPath : MainPage.HOME;
+  const currentMainPath = getMainPath(currentPath);
+  const activePage = isMainPage(currentMainPath)
+    ? currentMainPath
+    : MainPage.HOME;
   const setLoginState = useSetAtom(loginStateAtom);
 
   useEffect(() => {
@@ -73,7 +77,10 @@ const AccountNavigationMenu = () => {
   const loginState = useAtomValue(loginStateAtom);
   const router = useRouter();
   const currentPath = usePathname();
-  const activePage = isMainPage(currentPath) ? currentPath : MainPage.HOME;
+  const currentMainPath = getMainPath(currentPath);
+  const activePage = isMainPage(currentMainPath)
+    ? currentMainPath
+    : MainPage.HOME;
 
   const handleProfileSelect = useCallback(() => {
     // TODO

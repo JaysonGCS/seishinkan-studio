@@ -45,6 +45,14 @@ export const ValidPageSlugRecord: Record<
   'social-media': undefined,
 };
 
+export const getMainPath = (path: string): string => {
+  const splitPath = path.split('/');
+  if (splitPath.length <= 1) {
+    return path;
+  }
+  return `/${splitPath[1]}`;
+};
+
 export const isMainPage = (path: string): path is MainPage => {
   return Object.values<string>(MainPage).includes(path);
 };
