@@ -19,6 +19,7 @@ export const ArticleMedia: CollectionConfig = {
       type: 'text',
     },
   ],
+  labels: { plural: 'Article Media', singular: 'Article Media' },
   upload: {
     adminThumbnail: 'thumbnail',
     imageSizes: [

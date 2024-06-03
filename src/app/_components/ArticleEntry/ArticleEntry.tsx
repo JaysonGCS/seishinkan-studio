@@ -31,13 +31,15 @@ export const ArticleEntry = (props: OwnProps) => {
 
   return (
     <article className="flex flex-col gap-4 md:flex-row">
-      <Image
-        alt={alt ?? ''}
-        className="aspect-4/3 w-auto"
-        height={DEFAULT_THUMBNAIL_HEIGHT}
-        src={url}
-        width={DEFAULT_THUMBNAIL_WIDTH}
-      />
+      <Link href={href}>
+        <Image
+          alt={alt ?? ''}
+          className="aspect-4/3 w-auto"
+          height={DEFAULT_THUMBNAIL_HEIGHT}
+          src={url}
+          width={DEFAULT_THUMBNAIL_WIDTH}
+        />
+      </Link>
       <div className="flex flex-col justify-between">
         <Link href={href}>
           <h3 className="font-bold">

@@ -15,6 +15,7 @@ export interface Config {
     'invite-codes': InviteCode;
     'profile-media': ProfileMedia;
     media: Media;
+    'article-media': ArticleMedia;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -90,7 +91,9 @@ export interface WebsiteUser {
  */
 export interface Article {
   id: number;
+  image: number | ArticleMedia;
   title: string;
+  date: string;
   slug?: string | null;
   summary: string;
   content: {
@@ -115,6 +118,42 @@ export interface Article {
   };
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "article-media".
+ */
+export interface ArticleMedia {
+  id: number;
+  alt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
