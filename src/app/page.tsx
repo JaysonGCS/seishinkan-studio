@@ -9,6 +9,7 @@ import { getPageDetails } from './_data-access/PageDetails';
 import { isPageEnabled } from './_data-access/PageValidation';
 import { getSeoMetadata } from './_data-access/SeoMetadata';
 import { MainPage } from './_utils/Paths';
+import { AnnouncementArea } from './AnnouncementArea';
 
 const PAGE_KEY = MainPage.HOME;
 
@@ -31,11 +32,13 @@ export default async function Home() {
   const showHeroSection = !(
     typeof heroImage === 'number' || heroImage === undefined
   );
+
   return (
     <main>
       {showHeroSection ? <HeroSection isMainHero media={heroImage} /> : null}
-      <Section>Announcements</Section>
-      <Section lightTheme>Contact Us</Section>
+      <Section title="Announcements">
+        <AnnouncementArea articles={pageDetails.announcementArticles} />
+      </Section>
     </main>
   );
 }

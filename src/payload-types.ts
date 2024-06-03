@@ -301,6 +301,7 @@ export interface PayloadMigration {
 export interface HomePage {
   id: number;
   heroImage: number | Media;
+  announcementArticles: (number | Article)[];
   meta?: {
     title?: string | null;
     description?: string | null;

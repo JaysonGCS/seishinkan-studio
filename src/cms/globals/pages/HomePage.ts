@@ -13,5 +13,15 @@ export const HomePage: GlobalConfig = {
       relationTo: 'media',
       required: true,
     },
+    {
+      name: 'announcementArticles',
+      type: 'relationship',
+      hasMany: true,
+      label: 'Announcements (Max 6)',
+      maxRows: 6,
+      minRows: 1,
+      relationTo: 'articles',
+      required: true,
+    },
   ],
 };
