@@ -13,7 +13,7 @@ This is the source code for the Seishinkan Studio 2.0 [website](https://www.seis
 
 ### Page Development
 
-- ![Progress](https://progress-bar.dev/20/?title=progress) Home Page
+- ![Stable](https://progress-bar.dev/100/?title=stable) Home Page
 - ![Stable](https://progress-bar.dev/100/?title=stable) About Page
 - ![Progress](https://progress-bar.dev/70/?title=progress) News & Articles Page
 - ![Stable](https://progress-bar.dev/100/?title=stable) Kendo Page
