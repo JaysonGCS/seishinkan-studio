@@ -9,7 +9,6 @@ import React, { useMemo } from 'react';
 import type { StandardWindowSize } from '../../_hooks/useWindowSize';
 
 import { useWindowSize } from '../../_hooks/useWindowSize';
-import { isNotNil } from '../../_utils/General';
 
 interface OwnProps {
   isMainHero?: boolean;
@@ -18,6 +17,10 @@ interface OwnProps {
 
 const DEFAULT_HALF_HERO_HEIGHT = MediaConstant.halfHero.height / 2;
 const DEFAULT_MOBILE_HERO_HEIGHT = MediaConstant.mobileHero.height / 4;
+
+const isValidHeroUrl = (value: null | string | undefined): value is string => {
+  return value !== null && value !== undefined;
+};
 
 export const HeroSection = (props: OwnProps) => {
   const { isMainHero = false, media } = props;
@@ -44,7 +47,9 @@ export const HeroSection = (props: OwnProps) => {
   const heroUrl = sizes?.hero?.url;
 
   const heroImageComponent =
-    isNotNil(mobileHeroUrl) && isNotNil(halfHeroUrl) && isNotNil(heroUrl) ? (
+    isValidHeroUrl(mobileHeroUrl) &&
+    isValidHeroUrl(halfHeroUrl) &&
+    isValidHeroUrl(heroUrl) ? (
       <Image
         alt={alr}
         fetchPriority="high"

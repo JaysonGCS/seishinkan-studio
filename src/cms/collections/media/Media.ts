@@ -1,8 +1,8 @@
 import type { CollectionConfig } from 'payload/types';
 
-import { MediaConstant } from '../../Constants';
-import { admins } from './access/admins';
-import { anyone } from './access/anyone';
+import { MediaConstant } from '../../../Constants';
+import { admins } from '../access/admins';
+import { anyone } from '../access/anyone';
 
 export const Media: CollectionConfig = {
   slug: 'media',

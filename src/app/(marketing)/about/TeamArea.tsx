@@ -3,8 +3,6 @@ import type { AboutPage, ProfileMedia } from '@/src/payload-types';
 import Image from 'next/image';
 import React, { useCallback } from 'react';
 
-import { isNotNil } from '../../_utils/General';
-
 interface OwnProps {
   team: AboutPage['team'];
 }
@@ -15,7 +13,7 @@ export const TeamArea = (props: OwnProps) => {
   const generateProfile = useCallback((profileMedia: ProfileMedia) => {
     const alt = profileMedia.alt ?? '';
     const originalUrl = profileMedia.url;
-    if (isNotNil(originalUrl)) {
+    if (typeof originalUrl === 'string') {
       return (
         <div className="flex w-full flex-col items-center md:min-w-[30vw]">
           <Image

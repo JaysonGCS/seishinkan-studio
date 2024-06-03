@@ -10,10 +10,11 @@ import { buildConfig } from 'payload/config';
 import { Articles } from './cms/collections/Articles';
 import { ContactFormRecords } from './cms/collections/ContactFormRecords';
 import { InviteCodes } from './cms/collections/InviteCodes';
-import { Media } from './cms/collections/Media';
-import { ProfileMedia } from './cms/collections/ProfileMedia';
 import { Users } from './cms/collections/Users';
 import { WebsiteUsers } from './cms/collections/WebsiteUsers';
+import { ArticleMedia } from './cms/collections/media/ArticleMedia';
+import { Media } from './cms/collections/media/Media';
+import { ProfileMedia } from './cms/collections/media/ProfileMedia';
 import { DashboardHeader } from './cms/components/DashboardHeader';
 import { General } from './cms/globals/General';
 import { SocialMedia } from './cms/globals/SocialMedia';
@@ -44,6 +45,7 @@ export default buildConfig({
     InviteCodes,
     ProfileMedia,
     Media,
+    ArticleMedia,
   ],
   cookiePrefix: 'ssk',
   db: postgresAdapter({

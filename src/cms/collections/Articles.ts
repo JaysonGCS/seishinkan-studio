@@ -27,9 +27,26 @@ export const Articles: CollectionConfig = {
   },
   fields: [
     {
+      name: 'image',
+      type: 'upload',
+      label: 'Image (thumbnail and card)',
+      relationTo: 'article-media',
+      required: true,
+    },
+    {
       name: 'title',
       type: 'text',
       label: 'Title',
+      required: true,
+    },
+    {
+      name: 'date',
+      type: 'date',
+      admin: {
+        date: {
+          displayFormat: 'MMMM dd yyyy',
+        },
+      },
       required: true,
     },
     slugField('title', {

@@ -1,8 +1,8 @@
 import type { CollectionConfig } from 'payload/types';
 
-import { ProfileMediaConstant } from '../../Constants';
-import { admins } from './access/admins';
-import { anyone } from './access/anyone';
+import { ProfileMediaConstant } from '../../../Constants';
+import { admins } from '../access/admins';
+import { anyone } from '../access/anyone';
 
 export const ProfileMedia: CollectionConfig = {
   slug: 'profile-media',
