@@ -30,7 +30,7 @@ export const ArticleEntry = (props: OwnProps) => {
   }
   const dateStr = dayjs(date).format('D MMMM YYYY').toString();
   return (
-    <article className="flex flex-col items-center gap-4 md:flex-row">
+    <article className="flex flex-col items-center gap-4 md:flex-row md:items-start">
       <Link href={href}>
         <div
           className="relative aspect-4/3"
@@ -48,7 +48,7 @@ export const ArticleEntry = (props: OwnProps) => {
           />
         </div>
       </Link>
-      <div className="flex flex-col justify-between">
+      <div className="flex h-full flex-col justify-between">
         <Link href={href}>
           <h3 className="font-bold">
             <span>{title}</span>

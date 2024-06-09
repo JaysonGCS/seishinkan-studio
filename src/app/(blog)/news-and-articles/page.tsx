@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import { Newspaper, Pin } from 'lucide-react';
 import React from 'react';
 
 import { DEFAULT_INITIAL_PAGE_COUNTER } from '../../_atoms/ArticleAtoms';
@@ -43,14 +44,20 @@ const NewsAndArticlesPage = async () => {
       {showHeroSection ? <HeroSection media={heroImage} /> : null}
       <Section>
         <div className="w-full px-8 py-14 lg:px-14">
-          <h1 className="pb-8">Pinned Posts</h1>
+          <h1 className="flex items-center gap-2 pb-8">
+            <Pin size={20} />
+            <span>Pinned Posts</span>
+          </h1>
           <PostsArea posts={pageDetails.pinnedArticles} />
         </div>
       </Section>
       <hr className="mx-auto my-4 h-1 w-48 rounded border-0 bg-foreground md:my-10" />
       <Section>
         <div className="w-full px-8 pb-14 lg:px-14">
-          <h1 className="pb-8">Latest Posts</h1>
+          <h1 className="flex items-center gap-2 pb-8">
+            <Newspaper size={20} />
+            <span>Latest Posts</span>
+          </h1>
           <LatestPostsArea
             initialArticles={docs}
             initialNextPage={nextPage}
