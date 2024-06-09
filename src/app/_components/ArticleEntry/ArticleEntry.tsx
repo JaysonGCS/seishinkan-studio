@@ -30,7 +30,7 @@ export const ArticleEntry = (props: OwnProps) => {
   }
   const dateStr = dayjs(date).format('D MMMM YYYY').toString();
   return (
-    <article className="flex flex-col gap-4 md:flex-row">
+    <article className="flex flex-col items-center gap-4 md:flex-row">
       <Link href={href}>
         <div
           className="relative aspect-4/3"
