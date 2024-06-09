@@ -15,8 +15,8 @@ interface OwnProps {
   title: string;
 }
 
-const DEFAULT_THUMBNAIL_WIDTH = MediaConstant.thumbnail.width;
-const DEFAULT_THUMBNAIL_HEIGHT = MediaConstant.thumbnail.height;
+const DEFAULT_THUMBNAIL_WIDTH = MediaConstant.thumbnail.width / 2;
+const DEFAULT_THUMBNAIL_HEIGHT = MediaConstant.thumbnail.height / 2;
 
 export const ArticleEntry = (props: OwnProps) => {
   const { slug, date, image, summary, title } = props;
@@ -24,21 +24,29 @@ export const ArticleEntry = (props: OwnProps) => {
   const { alt, sizes } = image;
   const thumbnail = sizes?.thumbnail;
   const url = thumbnail?.url;
+
   if (url === undefined || url === null) {
     return null;
   }
   const dateStr = dayjs(date).format('D MMMM YYYY').toString();
-
   return (
     <article className="flex flex-col gap-4 md:flex-row">
       <Link href={href}>
-        <Image
-          alt={alt ?? ''}
-          className="aspect-4/3 w-auto"
-          height={DEFAULT_THUMBNAIL_HEIGHT}
-          src={url}
-          width={DEFAULT_THUMBNAIL_WIDTH}
-        />
+        <div
+          className="relative aspect-4/3"
+          style={{
+            height: DEFAULT_THUMBNAIL_HEIGHT,
+            width: DEFAULT_THUMBNAIL_WIDTH,
+          }}
+        >
+          <Image
+            alt={alt ?? ''}
+            className="rounded-sm"
+            fill
+            objectFit="contain"
+            src={url}
+          />
+        </div>
       </Link>
       <div className="flex flex-col justify-between">
         <Link href={href}>

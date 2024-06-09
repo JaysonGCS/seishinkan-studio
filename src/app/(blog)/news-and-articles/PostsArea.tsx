@@ -43,5 +43,5 @@ export const PostsArea = (props: OwnProps) => {
     return total;
   }, []);
 
-  return <div>{articles}</div>;
+  return <div className="flex flex-col gap-4">{articles}</div>;
 };

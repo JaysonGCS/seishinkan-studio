@@ -50,7 +50,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <Section>
-      <div className="flex flex-col gap-4 p-4 lg:px-20">
+      <div className="flex w-full flex-col gap-4 p-4 lg:px-20">
         <h2 className="font-bold">
           <span>{title}</span>
           <span> • {dateStr}</span>
@@ -59,7 +59,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           <div className="flex w-full justify-center">
             <Image
               alt={alt}
-              className="aspect-4/3 w-auto"
+              className="w-auto"
               height={height}
               src={url}
               width={width}

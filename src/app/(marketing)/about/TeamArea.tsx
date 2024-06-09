@@ -18,6 +18,7 @@ export const TeamArea = (props: OwnProps) => {
         <div className="flex w-full flex-col items-center md:min-w-[30vw]">
           <Image
             alt={alt}
+            className="rounded-sm"
             height={500}
             quality={100}
             src={originalUrl}

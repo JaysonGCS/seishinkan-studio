@@ -63,12 +63,14 @@ export const AnnouncementArea = (props: OwnProps) => {
             className="flex justify-center md:basis-1/2 lg:basis-1/3"
             key={`announcement-${title}`}
           >
-            <Card className="w-[350px] border-accent">
+            <Card className="w-[350px] bg-card-foreground text-card">
               {getImage()}
               <Link href={href}>
                 <CardHeader>
                   <CardTitle>{title}</CardTitle>
-                  <CardDescription>{dateStr}</CardDescription>
+                  <CardDescription className="text-muted">
+                    {dateStr}
+                  </CardDescription>
                 </CardHeader>
               </Link>
               <CardContent>
