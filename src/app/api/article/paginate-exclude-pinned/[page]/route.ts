@@ -5,6 +5,8 @@ import { logger } from '@/src/app/_utils/Logger';
 import { getPayloadClient } from '@/src/getPayload';
 import { NextResponse } from 'next/server';
 
+const DEFAULT_ARTICLE_LIMIT = 5;
+
 export async function GET(
   _: Request,
   { params }: { params: { page: number } },
@@ -27,8 +29,7 @@ export async function GET(
     );
     const resp = await payload.find<'articles'>({
       collection: 'articles',
-      // TODO: increase limit
-      limit: 1,
+      limit: DEFAULT_ARTICLE_LIMIT,
       page: pageNumber === 0 ? undefined : pageNumber,
       where: {
         ['id']: {

@@ -1,4 +1,3 @@
-'use server';
 import type { Article, NewsAndArticlesPage } from '@/src/payload-types';
 import type { ReactElement } from 'react';
 
@@ -16,7 +15,7 @@ const isArticle = (articles: Article | number): articles is Article => {
   return typeof articles !== 'number';
 };
 
-export const PinnedPostsArea = (props: OwnProps) => {
+export const PostsArea = (props: OwnProps) => {
   const { posts } = props;
 
   const validPosts = (posts ?? DEFAULT_POSTS).filter<Article>(isArticle);
@@ -35,6 +34,7 @@ export const PinnedPostsArea = (props: OwnProps) => {
       <ArticleEntry
         date={date}
         image={image}
+        key={`news-and-articles-article-entry-${slug}`}
         slug={slug}
         summary={summary}
         title={title}
