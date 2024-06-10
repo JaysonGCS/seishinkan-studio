@@ -1,9 +1,10 @@
 import type { NextRequest } from 'next/server';
 
-import { logger } from '@/src/app/_utils/Logger';
 import { isPageSlug } from '@/src/app/_utils/Paths';
 import { getPayloadClient } from '@/src/getPayload';
 import { NextResponse } from 'next/server';
+
+import { logger } from '../../../_utils/Logger';
 
 export async function GET(
   _request: NextRequest,

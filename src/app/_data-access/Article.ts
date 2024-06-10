@@ -1,6 +1,5 @@
 import type { Article } from '@/src/payload-types';
-
-import type { PaginatedArticleResponse } from '../api/article/paginate-exclude-pinned/[page]/route';
+import type { PaginatedArticleResponse } from '@/src/types/apiTypes';
 
 export const getArticle = async (slug: string): Promise<Article> => {
   const resp = await fetch(

@@ -1,5 +1,4 @@
-import type { Article } from '@/src/payload-types';
-import type { PaginatedDocs } from 'payload/database';
+import type { PaginatedArticleResponse } from '@/src/types/apiTypes';
 
 import { logger } from '@/src/app/_utils/Logger';
 import { getPayloadClient } from '@/src/getPayload';
@@ -38,7 +37,7 @@ export async function GET(
       },
     });
     const { docs, nextPage = null, prevPage = null, totalPages } = resp;
-    return NextResponse.json({
+    return NextResponse.json<PaginatedArticleResponse>({
       docs,
       nextPage,
       prevPage,
@@ -51,11 +50,4 @@ export async function GET(
       { status: 500 },
     );
   }
-}
-
-export interface PaginatedArticleResponse {
-  docs: PaginatedDocs<Article>['docs'];
-  nextPage: null | number;
-  prevPage: null | number;
-  totalPages: number;
 }

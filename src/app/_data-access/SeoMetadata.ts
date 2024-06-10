@@ -13,7 +13,7 @@ export const getSeoMetadata = async (
     method: 'POST',
   });
   if (!resp.ok) {
-    throw new Error('Fail to get social media details.');
+    throw new Error('Fail to get seo metadata.');
   }
   return await resp.json();
 };

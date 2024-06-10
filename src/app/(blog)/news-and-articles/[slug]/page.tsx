@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import { DisabledPage } from '@/src/app/_components/DisabledPage/DisabledPage';
 import { Section } from '@/src/app/_components/Section/Section';
-import { getAllArticleSlugs, getArticle } from '@/src/app/_data-access/Article';
+import { getArticle } from '@/src/app/_data-access/Article';
 import dayjs from 'dayjs';
 import Image from 'next/image';
 
@@ -22,10 +22,11 @@ export async function generateMetadata({
   };
 }
 
-export async function generateStaticParams() {
-  const { slugs } = await getAllArticleSlugs();
-  return slugs.map((slug) => ({ slug }));
-}
+// FIXME: enable and experiment in the future
+// export async function generateStaticParams() {
+//   const { slugs } = await getAllArticleSlugs();
+//   return slugs.map((slug) => ({ slug }));
+// }
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
