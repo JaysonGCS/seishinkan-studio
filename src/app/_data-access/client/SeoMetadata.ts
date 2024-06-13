@@ -1,13 +1,12 @@
-import type { MainPage } from '../_utils/Paths';
-import type { SeoMetadata } from '../api/seo-metadata/route';
+import type { SeoMetadata } from '@/src/types/apiTypes';
 
-export const getSeoMetadata = async (
+import type { MainPage } from '../../_utils/Paths';
+
+export const getClientSeoMetadata = async (
   page: MainPage,
-  slug?: string,
 ): Promise<SeoMetadata> => {
   const resp = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/seo-metadata`, {
     body: JSON.stringify({
-      slug,
       page,
     }),
     method: 'POST',

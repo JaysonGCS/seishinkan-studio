@@ -1,7 +1,8 @@
 'use server';
 
+import { isPageEnabled } from '@/src/app/_data-access/server';
+
 import { DisabledPage } from '../../../_components/DisabledPage/DisabledPage';
-import { isPageEnabled } from '../../../_data-access/PageValidation';
 import { MainPage } from '../../../_utils/Paths';
 import { VerificationPage } from './VerificationPage';
 

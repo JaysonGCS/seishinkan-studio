@@ -6,9 +6,11 @@ import React from 'react';
 import { DisabledPage } from '../../_components/DisabledPage/DisabledPage';
 import { HeroSection } from '../../_components/HeroSection/HeroSection';
 import { Section } from '../../_components/Section/Section';
-import { getGeneralDetails } from '../../_data-access/GeneralDetails';
-import { getPageDetails } from '../../_data-access/PageDetails';
-import { getSeoMetadata } from '../../_data-access/SeoMetadata';
+import {
+  getGeneralDetails,
+  getPageDetails,
+  getSeoMetadata,
+} from '../../_data-access/server';
 import { DEFAULT_ENQUIRY_EMAIL_TITLE } from '../../_utils/Constants';
 import { MainPage } from '../../_utils/Paths';
 import { ContactArea } from './ContactArea';

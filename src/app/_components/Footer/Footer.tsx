@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 
-import { getSocialMedia } from '../../_data-access/SocialMedia';
+import { getSocialMedia } from '../../_data-access/server';
 
 const DEFAULT_LOGO_WIDTH = 25;
 const DEFAULT_LOGO_HEIGHT = 25;

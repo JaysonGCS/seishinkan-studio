@@ -1,6 +1,6 @@
 import type { General } from '@/src/payload-types';
 
-export const getGeneralDetails = async (): Promise<General> => {
+export const getClientGeneralDetails = async (): Promise<General> => {
   const resp = await fetch(
     `${process.env.NEXT_PUBLIC_HOST}/api/general-details`,
     {

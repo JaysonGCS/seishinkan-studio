@@ -1,6 +1,6 @@
 import type { SocialMedia } from '@/src/payload-types';
 
-export const getSocialMedia = async (): Promise<SocialMedia> => {
+export const getClientSocialMedia = async (): Promise<SocialMedia> => {
   const resp = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/social-media`, {
     method: 'GET',
   });

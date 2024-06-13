@@ -6,6 +6,8 @@ import { NextResponse } from 'next/server';
 
 import { logger } from '../../_utils/Logger';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: Request) {
   const body = await request.json();
   const { email, password } = signUpFormSchema.parse(body);
@@ -46,7 +48,7 @@ export async function POST(request: Request) {
       );
     }
   } catch (e) {
-    logger.error(e);
+    logger.error(`Error for signup - ${e}`);
     return NextResponse.json(
       { message: 'Internal Server Error' },
       { status: 500 },

@@ -1,3 +1,4 @@
+'use server';
 import type { Metadata } from 'next';
 
 import { Newspaper, Pin } from 'lucide-react';
@@ -7,9 +8,11 @@ import { DEFAULT_INITIAL_PAGE_COUNTER } from '../../_atoms/ArticleAtoms';
 import { DisabledPage } from '../../_components/DisabledPage/DisabledPage';
 import { HeroSection } from '../../_components/HeroSection/HeroSection';
 import { Section } from '../../_components/Section/Section';
-import { getAllArticlesExcludePinned } from '../../_data-access/Article';
-import { getPageDetails } from '../../_data-access/PageDetails';
-import { getSeoMetadata } from '../../_data-access/SeoMetadata';
+import {
+  getAllArticlesExcludePinned,
+  getPageDetails,
+  getSeoMetadata,
+} from '../../_data-access/server';
 import { MainPage } from '../../_utils/Paths';
 import { LatestPostsArea } from './LatestPostsArea';
 import { PostsArea } from './PostsArea';

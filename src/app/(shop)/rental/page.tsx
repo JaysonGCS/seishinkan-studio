@@ -3,8 +3,7 @@ import type { Metadata } from 'next';
 import { DisabledPage } from '../../_components/DisabledPage/DisabledPage';
 import { HeroSection } from '../../_components/HeroSection/HeroSection';
 import { Section } from '../../_components/Section/Section';
-import { getPageDetails } from '../../_data-access/PageDetails';
-import { getSeoMetadata } from '../../_data-access/SeoMetadata';
+import { getPageDetails, getSeoMetadata } from '../../_data-access/server';
 import { MainPage } from '../../_utils/Paths';
 
 const PAGE_KEY = MainPage.RENTAL;

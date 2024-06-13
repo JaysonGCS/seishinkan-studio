@@ -1,5 +1,5 @@
 import { DisabledPage } from '../../_components/DisabledPage/DisabledPage';
-import { getPageDetails } from '../../_data-access/PageDetails';
+import { getPageDetails } from '../../_data-access/server';
 import { MainPage } from '../../_utils/Paths';
 import { MemberPage } from './MemberPage';
 

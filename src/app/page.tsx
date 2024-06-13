@@ -5,9 +5,11 @@ import React from 'react';
 import { DisabledPage } from './_components/DisabledPage/DisabledPage';
 import { HeroSection } from './_components/HeroSection/HeroSection';
 import { Section } from './_components/Section/Section';
-import { getPageDetails } from './_data-access/PageDetails';
-import { isPageEnabled } from './_data-access/PageValidation';
-import { getSeoMetadata } from './_data-access/SeoMetadata';
+import {
+  getPageDetails,
+  getSeoMetadata,
+  isPageEnabled,
+} from './_data-access/server';
 import { MainPage } from './_utils/Paths';
 import { AnnouncementArea } from './AnnouncementArea';
 

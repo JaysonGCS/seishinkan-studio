@@ -4,6 +4,8 @@ import { NextResponse } from 'next/server';
 
 import { logger } from '../../_utils/Logger';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: Request) {
   const body = await request.json();
   const parsedBody = contactFormSchema.parse(body);
@@ -28,7 +30,7 @@ export async function POST(request: Request) {
     });
     return NextResponse.json({}, { status: 200 });
   } catch (e) {
-    logger.error(e);
+    logger.error(`Error for form submission - ${e}`);
     return NextResponse.json(
       { message: 'Internal Server Error' },
       { status: 500 },

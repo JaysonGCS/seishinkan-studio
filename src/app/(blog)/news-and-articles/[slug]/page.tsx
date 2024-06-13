@@ -1,8 +1,9 @@
+'use server';
 import type { Metadata } from 'next';
 
 import { DisabledPage } from '@/src/app/_components/DisabledPage/DisabledPage';
 import { Section } from '@/src/app/_components/Section/Section';
-import { getArticle } from '@/src/app/_data-access/Article';
+import { getArticle } from '@/src/app/_data-access/server';
 import dayjs from 'dayjs';
 import Image from 'next/image';
 

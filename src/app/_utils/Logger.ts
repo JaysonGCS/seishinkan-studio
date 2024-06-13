@@ -1,7 +1,13 @@
-import winston from 'winston';
+import type { Logger } from 'pino';
 
-export const logger = winston.createLogger({
-  format: winston.format.json(),
-  level: 'info',
-  transports: [new winston.transports.Console()],
+import pino from 'pino';
+
+export const logger: Logger = pino({
+  redact: [], // prevent logging of sensitive data
+  transport: {
+    options: {
+      colorize: true,
+    },
+    target: 'pino-pretty',
+  },
 });

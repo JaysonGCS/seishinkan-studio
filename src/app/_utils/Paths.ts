@@ -1,12 +1,14 @@
 import type {
   AboutPage,
   ContactPage,
+  General,
   HomePage,
   KendoPage,
   LoginPage,
   MemberPage,
   NewsAndArticlesPage,
   RentalPage,
+  SocialMedia,
 } from '@/src/payload-types';
 import type { GeneratedTypes } from 'payload';
 
@@ -85,6 +87,17 @@ export const pageToCollectionSlugRecord: Record<
   [MainPage.RENTAL]: 'rental-page',
 };
 
+export type MainPageToSlug = {
+  [MainPage.ABOUT]: 'about-page';
+  [MainPage.CONTACT]: 'contact-page';
+  [MainPage.HOME]: 'home-page';
+  [MainPage.KENDO]: 'kendo-page';
+  [MainPage.LOGIN]: 'login-page';
+  [MainPage.MEMBER]: 'member-page';
+  [MainPage.NEWS_AND_ARTICLES]: 'news-and-articles-page';
+  [MainPage.RENTAL]: 'rental-page';
+};
+
 export type MainPageToPageDetails = {
   [MainPage.ABOUT]: AboutPage;
   [MainPage.CONTACT]: ContactPage;
@@ -94,4 +107,17 @@ export type MainPageToPageDetails = {
   [MainPage.MEMBER]: MemberPage;
   [MainPage.NEWS_AND_ARTICLES]: NewsAndArticlesPage;
   [MainPage.RENTAL]: RentalPage;
+};
+
+export type SlugToPageDetails = {
+  'about-page': AboutPage;
+  'contact-page': ContactPage;
+  general: General;
+  'home-page': HomePage;
+  'kendo-page': KendoPage;
+  'login-page': LoginPage;
+  'member-page': MemberPage;
+  'news-and-articles-page': NewsAndArticlesPage;
+  'rental-page': RentalPage;
+  'social-media': SocialMedia;
 };

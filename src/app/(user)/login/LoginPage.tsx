@@ -29,7 +29,7 @@ import { LoginStatus, loginStateAtom } from '../../_atoms/UserLoginAtoms';
 import { Captcha } from '../../_components/Captcha/Captcha';
 import { LoadableButton } from '../../_components/LoadableButton/LoadableButton';
 import { Section } from '../../_components/Section/Section';
-import { validateTurnstile } from '../../_data-access/TurnstileValidation';
+import { validateClientTurnstile } from '../../_data-access/client/TurnstileValidation';
 import {
   TOAST_ERROR_DURATION,
   TOAST_INFO_DURATION,
@@ -72,7 +72,7 @@ export const LoginPage = () => {
     let isValidRequest = false;
     let errorMessage: string | undefined = undefined;
     try {
-      const result = await validateTurnstile({ token });
+      const result = await validateClientTurnstile({ token });
       errorMessage = result.message;
       isValidRequest = result.isValid;
     } catch (e) {

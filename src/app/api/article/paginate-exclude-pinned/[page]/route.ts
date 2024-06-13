@@ -1,41 +1,15 @@
 import type { PaginatedArticleResponse } from '@/src/types/apiTypes';
 
+import { getAllArticlesExcludePinnedPayload } from '@/src/app/_data-access/server';
 import { logger } from '@/src/app/_utils/Logger';
-import { getPayloadClient } from '@/src/getPayload';
 import { NextResponse } from 'next/server';
-
-const DEFAULT_ARTICLE_LIMIT = 5;
 
 export async function GET(
   _: Request,
   { params }: { params: { page: number } },
 ) {
-  const pageNumber = Math.max(Number(params.page), 0);
-  const payload = await getPayloadClient();
   try {
-    const newsAndArticlesPage = await payload.findGlobal({
-      slug: 'news-and-articles-page',
-    });
-    const pinnedArticles = newsAndArticlesPage.pinnedArticles;
-    const pinnedArticlesIds = (pinnedArticles ?? []).reduce<number[]>(
-      (total, article) => {
-        if (typeof article !== 'number') {
-          total.push(article.id);
-        }
-        return total;
-      },
-      [],
-    );
-    const resp = await payload.find<'articles'>({
-      collection: 'articles',
-      limit: DEFAULT_ARTICLE_LIMIT,
-      page: pageNumber === 0 ? undefined : pageNumber,
-      where: {
-        ['id']: {
-          not_in: pinnedArticlesIds,
-        },
-      },
-    });
+    const resp = await getAllArticlesExcludePinnedPayload(params.page);
     const { docs, nextPage = null, prevPage = null, totalPages } = resp;
     return NextResponse.json<PaginatedArticleResponse>({
       docs,

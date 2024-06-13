@@ -4,7 +4,7 @@ import type { Atom } from 'jotai';
 import { atom } from 'jotai';
 import { atomFamily } from 'jotai/utils';
 
-import { getAllArticlesExcludePinned } from '../_data-access/Article';
+import { getClientAllArticlesExcludePinned } from '../_data-access/client/AllArticlesExcludePinned';
 
 export const DEFAULT_INITIAL_PAGE_COUNTER = 1;
 
@@ -13,7 +13,7 @@ export const paginatedArticleListAtomFamily = atomFamily<
   Atom<Promise<Article[]>>
 >((pageCounter) => {
   return atom(async () => {
-    return (await getAllArticlesExcludePinned(pageCounter)).docs;
+    return (await getClientAllArticlesExcludePinned(pageCounter)).docs;
   });
 });
 

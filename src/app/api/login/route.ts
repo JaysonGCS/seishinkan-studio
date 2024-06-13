@@ -11,6 +11,8 @@ import {
 } from '../../_utils/Constants';
 import { logger } from '../../_utils/Logger';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   const payload = await getPayloadClient();
   const body = await request.json();
@@ -65,7 +67,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: 'Unauthorised.' }, { status: 401 });
     }
   } catch (e) {
-    logger.error(e);
+    logger.error(`Error for login - ${e}`);
     return NextResponse.json(
       { message: 'Internal Server Error' },
       { status: 500 },

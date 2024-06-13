@@ -46,8 +46,17 @@ const start = async (): Promise<void> => {
     try {
       server.listen(PORT, async () => {
         payload.logger.info(`Next.js is now building...`);
-        // @ts-expect-error
-        await nextBuild(path.join(__dirname, '../'));
+        // Related discussion: https://github.com/vercel/next.js/discussions/46544
+        await nextBuild(
+          path.join(__dirname, '../'),
+          undefined,
+          undefined,
+          false,
+          undefined,
+          undefined,
+          undefined,
+          'compile',
+        );
         process.exit();
       });
     } catch (e) {

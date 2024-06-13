@@ -8,3 +8,8 @@ export interface PaginatedArticleResponse {
   prevPage: null | number;
   totalPages: number;
 }
+
+export type SeoMetadata = {
+  description?: null | string;
+  title?: null | string;
+};

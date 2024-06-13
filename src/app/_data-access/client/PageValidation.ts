@@ -1,6 +1,6 @@
-import type { MainPage } from '../_utils/Paths';
+import type { MainPage } from '../../_utils/Paths';
 
-export const isPageEnabled = async (page: MainPage): Promise<boolean> => {
+export const isClientPageEnabled = async (page: MainPage): Promise<boolean> => {
   const resp = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/page-allow`, {
     body: JSON.stringify({
       page,

@@ -1,7 +1,7 @@
 import type { turnstileSchema } from '@/src/validation/turnstileValidation';
 import type { z } from 'zod';
 
-export const validateTurnstile = async (
+export const validateClientTurnstile = async (
   data: z.infer<typeof turnstileSchema>,
 ): Promise<{ isValid: boolean; message: string | undefined }> => {
   const resp = await fetch(

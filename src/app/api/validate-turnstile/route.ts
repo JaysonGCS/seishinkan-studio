@@ -6,6 +6,8 @@ import { NextResponse } from 'next/server';
 import { TURNSTILE_SITE_VERIFY } from '../../_utils/Constants';
 import { logger } from '../../_utils/Logger';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   const body = await request.json();
   const { token } = turnstileSchema.parse(body);
@@ -31,7 +33,7 @@ export async function POST(request: NextRequest) {
       { status: 400 },
     );
   } catch (e) {
-    logger.error(e);
+    logger.error(`Error for validating turnstile - ${e}`);
     return NextResponse.json(
       { message: 'Internal Server Error' },
       { status: 500 },

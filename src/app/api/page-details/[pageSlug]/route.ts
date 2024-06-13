@@ -1,7 +1,7 @@
 import type { NextRequest } from 'next/server';
 
+import { getPageDetailsPayload } from '@/src/app/_data-access/server';
 import { isPageSlug } from '@/src/app/_utils/Paths';
-import { getPayloadClient } from '@/src/getPayload';
 import { NextResponse } from 'next/server';
 
 import { logger } from '../../../_utils/Logger';
@@ -15,14 +15,11 @@ export async function GET(
     logger.error('Invalid page slug');
     return NextResponse.json({ message: 'Invalid page slug' }, { status: 400 });
   }
-  const payload = await getPayloadClient();
   try {
-    const pageDetails = await payload.findGlobal({
-      slug: pageSlug,
-    });
+    const pageDetails = await getPageDetailsPayload(pageSlug);
     return NextResponse.json(pageDetails);
   } catch (e) {
-    logger.error(e);
+    logger.error(`Error for retrieving page details - ${e}`);
     return NextResponse.json(
       { message: 'Internal Server Error' },
       { status: 500 },

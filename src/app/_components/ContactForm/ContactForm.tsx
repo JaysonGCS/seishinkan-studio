@@ -19,8 +19,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { submitContactForm } from '../../_data-access/FormSubmission';
-import { validateTurnstile } from '../../_data-access/TurnstileValidation';
+import { submitClientContactForm } from '../../_data-access/client/FormSubmission';
+import { validateClientTurnstile } from '../../_data-access/client/TurnstileValidation';
 import {
   TOAST_ERROR_DURATION,
   TOAST_INFO_DURATION,
@@ -87,7 +87,7 @@ export const ContactForm = (props: OwnProps) => {
       let isValidRequest = false;
       let errorMessage: string | undefined = undefined;
       try {
-        const result = await validateTurnstile({ token });
+        const result = await validateClientTurnstile({ token });
         errorMessage = result.message;
         isValidRequest = result.isValid;
       } catch (e) {
@@ -114,7 +114,7 @@ export const ContactForm = (props: OwnProps) => {
         return;
       }
       try {
-        await submitContactForm(data);
+        await submitClientContactForm(data);
         toast({
           description: 'Your message has been sent.',
           duration: TOAST_INFO_DURATION,
