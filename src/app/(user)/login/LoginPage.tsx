@@ -140,6 +140,7 @@ export const LoginPage = () => {
           title: 'Something went wrong.',
           variant: 'destructive',
         });
+        signUpCaptchaApiRef.current?.reset();
       }
       setInProgress(false);
     },
@@ -173,6 +174,7 @@ export const LoginPage = () => {
           title: 'Something went wrong.',
           variant: 'destructive',
         });
+        loginCaptchaApiRef.current?.reset();
       }
       setInProgress(false);
     },

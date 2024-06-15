@@ -67,15 +67,14 @@ export const Captcha = forwardRef((props: CaptchaProps, ref) => {
 
   useImperativeHandle(
     ref,
-    () => {
-      return {
+    () =>
+      ({
         reset: () => {
           if (widgetIdRef.current !== null) {
             globalNamespace.turnstile?.reset(widgetIdRef.current);
           }
         },
-      } satisfies CaptchaInnerFunctions;
-    },
+      }) satisfies CaptchaInnerFunctions,
     [],
   );
 
