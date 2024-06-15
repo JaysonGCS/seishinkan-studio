@@ -21,6 +21,7 @@ export const Media: CollectionConfig = {
   ],
   upload: {
     adminThumbnail: 'thumbnail',
+    disableLocalStorage: process.env.PAYLOAD_ENABLE_LOCAL_MEDIA !== 'true',
     imageSizes: [
       {
         // 4:3

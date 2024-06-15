@@ -2,6 +2,8 @@ import type { GenerateTitle } from '@payloadcms/plugin-seo/types';
 
 import { webpackBundler } from '@payloadcms/bundler-webpack';
 import { postgresAdapter } from '@payloadcms/db-postgres';
+import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
+import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3';
 import seoPlugin from '@payloadcms/plugin-seo';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import path from 'path';
@@ -31,6 +33,18 @@ const generateArticleTitle: GenerateTitle = (props) => {
   const doc = props.doc as { title: { value: string } };
   return `Seishinkansg.com — ${doc.title.value}`;
 };
+
+const adapter = s3Adapter({
+  bucket: process.env.S3_BUCKET ?? '',
+  config: {
+    credentials: {
+      accessKeyId: process.env.S3_ACCESS_KEY_ID ?? '',
+      secretAccessKey: process.env.S3_SECRET_ACCESS_KEY ?? '',
+    },
+    endpoint: process.env.S3_ENDPOINT,
+    region: process.env.S3_REGION,
+  },
+});
 
 export default buildConfig({
   admin: {
@@ -80,6 +94,20 @@ export default buildConfig({
     seoPlugin({
       collections: ['articles'],
       generateTitle: generateArticleTitle,
+    }),
+    cloudStorage({
+      collections: {
+        'article-media': {
+          adapter,
+        },
+        media: {
+          adapter,
+        },
+        'profile-media': {
+          adapter,
+        },
+      },
+      enabled: process.env.PAYLOAD_ENABLE_CLOUD_STORAGE === 'true',
     }),
   ],
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
