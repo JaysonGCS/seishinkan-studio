@@ -19,7 +19,9 @@ export const FaqArea = (props: OwnProps) => {
     return (
       <AccordionItem key={`kendo-page-faq-${faq.title}`} value={title}>
         <AccordionTrigger>{title}</AccordionTrigger>
-        <AccordionContent>{description}</AccordionContent>
+        <AccordionContent className="whitespace-pre-wrap">
+          {description}
+        </AccordionContent>
       </AccordionItem>
     );
   });

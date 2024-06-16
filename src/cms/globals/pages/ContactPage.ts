@@ -1,5 +1,7 @@
 import type { GlobalConfig } from 'payload/types';
 
+import { secondaryHeroFields } from '../../fields/secondaryHeroFields';
+
 export const ContactPage: GlobalConfig = {
   slug: 'contact-page',
   admin: {
@@ -12,13 +14,7 @@ export const ContactPage: GlobalConfig = {
       defaultValue: true,
       label: 'Enable Page',
     },
-    {
-      name: 'heroImage',
-      type: 'upload',
-      label: 'Hero Image (halfHero and mobileHero)',
-      relationTo: 'media',
-      required: true,
-    },
+    ...secondaryHeroFields(),
     {
       name: 'googleMapEmbededLink',
       type: 'text',

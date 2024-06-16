@@ -11,6 +11,7 @@ import type { StandardWindowSize } from '../../_hooks/useWindowSize';
 import { useWindowSize } from '../../_hooks/useWindowSize';
 
 interface OwnProps {
+  heroBannerMessage?: null | string;
   isMainHero?: boolean;
   media: Media;
 }
@@ -23,7 +24,7 @@ const isValidHeroUrl = (value: null | string | undefined): value is string => {
 };
 
 export const HeroSection = (props: OwnProps) => {
-  const { isMainHero = false, media } = props;
+  const { heroBannerMessage, isMainHero = false, media } = props;
   const sizes = media.sizes;
   const alr = media.alt ?? '';
   const windowSize = useWindowSize();
@@ -87,6 +88,11 @@ export const HeroSection = (props: OwnProps) => {
       })}
       style={{ minHeight }}
     >
+      {typeof heroBannerMessage === 'string' ? (
+        <div className="absolute inset-x-0 left-1/2 top-1/2 z-10 w-full -translate-x-1/2 -translate-y-1/2 whitespace-pre-wrap bg-black/50 p-2 text-white md:w-fit">
+          {heroBannerMessage}
+        </div>
+      ) : null}
       {heroImageComponent}
     </div>
   );

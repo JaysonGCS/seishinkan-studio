@@ -1,6 +1,8 @@
 import type { RowLabelArgs } from 'payload/dist/admin/components/forms/RowLabel/types';
 import type { GlobalConfig } from 'payload/types';
 
+import { secondaryHeroFields } from '../../fields/secondaryHeroFields';
+
 export const AboutPage: GlobalConfig = {
   slug: 'about-page',
   admin: {
@@ -13,13 +15,7 @@ export const AboutPage: GlobalConfig = {
       defaultValue: true,
       label: 'Enable Page',
     },
-    {
-      name: 'heroImage',
-      type: 'upload',
-      label: 'Hero Image (halfHero and mobileHero)',
-      relationTo: 'media',
-      required: true,
-    },
+    ...secondaryHeroFields(),
     {
       name: 'visionDescription',
       type: 'textarea',

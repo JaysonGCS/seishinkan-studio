@@ -62,7 +62,7 @@ export const TeamArea = (props: OwnProps) => {
             <span className="font-bold">{`${name}${title ? ', ' : ''}`}</span>
             <span className="italic">{title}</span>
           </h2>
-          <p>{introduction}</p>
+          <p className="whitespace-pre-wrap">{introduction}</p>
           <div>
             <ul>{generateAchievementList(achievements)}</ul>
           </div>

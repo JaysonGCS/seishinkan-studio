@@ -22,6 +22,7 @@ const AboutPage = async () => {
   const pageDetails = await getPageDetails(PAGE_KEY);
   const {
     enabled: isEnabled,
+    heroBannerMessage,
     missionDescription,
     team,
     visionDescription,
@@ -38,7 +39,9 @@ const AboutPage = async () => {
 
   return (
     <main>
-      {showHeroSection ? <HeroSection media={heroImage} /> : null}
+      {showHeroSection ? (
+        <HeroSection heroBannerMessage={heroBannerMessage} media={heroImage} />
+      ) : null}
       <Section>
         <VisionAndMissionArea
           missionDescription={missionDescription}
