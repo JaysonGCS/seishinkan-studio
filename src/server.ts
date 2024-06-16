@@ -57,6 +57,16 @@ const start = async (): Promise<void> => {
           undefined,
           'compile',
         );
+        await nextBuild(
+          path.join(__dirname, '../'),
+          undefined,
+          undefined,
+          false,
+          undefined,
+          undefined,
+          undefined,
+          'generate',
+        );
         process.exit();
       });
     } catch (e) {

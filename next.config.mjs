@@ -20,6 +20,8 @@ const nextConfig = {
   },
   experimental: {
     serverComponentsExternalPackages: ['pino', 'pino-pretty', 'payload'],
+    workerThreads: false,
+    cpus: 1,
   },
   webpack: (config) => {
     config.resolve.fallback = {
