@@ -9,7 +9,7 @@ export const getSocialMedia = async (): Promise<SocialMedia> => {
 export const getSocialMediaPayload = async (): Promise<SocialMedia> => {
   const payload = await getPayloadClient();
   try {
-    const resp: SocialMedia = await payload.findGlobal({
+    const resp: SocialMedia = await payload.findGlobal<'social-media'>({
       slug: 'social-media',
     });
     return resp;

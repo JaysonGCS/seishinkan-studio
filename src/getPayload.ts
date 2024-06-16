@@ -1,5 +1,5 @@
-import type { Payload } from 'payload';
 import type { InitOptions } from 'payload/config';
+import type { Payload } from 'payload/dist/payload';
 
 import dotenv from 'dotenv';
 import path from 'path';

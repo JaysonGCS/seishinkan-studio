@@ -1,4 +1,5 @@
-import type { GeneratedTypes, Payload } from 'payload';
+import type { GeneratedTypes } from 'payload';
+import type { Payload } from 'payload/dist/payload';
 
 import { getPayloadClient } from '@/src/getPayload';
 
