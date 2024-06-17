@@ -50,11 +50,11 @@ const ContactPage = async () => {
               href={`mailto:${email}?subject=${DEFAULT_ENQUIRY_EMAIL_TITLE}`}
             >
               <Mail />
-              <h2>{email}</h2>
+              <span>{email}</span>
             </a>
             <div className="flex flex-row gap-2">
               <MapPinned />
-              <h2>{address}</h2>
+              <span>{address}</span>
             </div>
             <iframe
               allowFullScreen={false}
