@@ -1,4 +1,3 @@
-'use server';
 import type { Article, NewsAndArticlesPage } from '@/src/payload-types';
 import type { ReactElement } from 'react';
 
