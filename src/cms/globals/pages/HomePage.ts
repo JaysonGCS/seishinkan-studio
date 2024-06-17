@@ -14,6 +14,13 @@ export const HomePage: GlobalConfig = {
       required: true,
     },
     {
+      name: 'heroBannerArticle',
+      type: 'relationship',
+      label: 'Hero Banner Article',
+      relationTo: 'articles',
+      required: true,
+    },
+    {
       name: 'announcementArticles',
       type: 'relationship',
       hasMany: true,

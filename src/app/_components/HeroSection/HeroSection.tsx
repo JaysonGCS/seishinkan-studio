@@ -1,16 +1,20 @@
 'use client';
-import type { Media } from '@/src/payload-types';
+import type { Article, Media } from '@/src/payload-types';
 
 import { MediaConstant } from '@/src/Constants';
 import clsx from 'clsx';
+import dayjs from 'dayjs';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useMemo } from 'react';
 
 import type { StandardWindowSize } from '../../_hooks/useWindowSize';
 
 import { useWindowSize } from '../../_hooks/useWindowSize';
+import { MainPage } from '../../_utils/Paths';
 
 interface OwnProps {
+  heroBannerArticle?: Article | null;
   heroBannerMessage?: null | string;
   isMainHero?: boolean;
   media: Media;
@@ -24,7 +28,12 @@ const isValidHeroUrl = (value: null | string | undefined): value is string => {
 };
 
 export const HeroSection = (props: OwnProps) => {
-  const { heroBannerMessage, isMainHero = false, media } = props;
+  const {
+    heroBannerArticle,
+    heroBannerMessage,
+    isMainHero = false,
+    media,
+  } = props;
   const sizes = media.sizes;
   const alr = media.alt ?? '';
   const windowSize = useWindowSize();
@@ -80,6 +89,36 @@ export const HeroSection = (props: OwnProps) => {
     return null;
   }
 
+  const heroBanner = () => {
+    if (heroBannerArticle) {
+      const { slug, date, title } = heroBannerArticle;
+      const href = `${MainPage.NEWS_AND_ARTICLES}/${slug}`;
+      const dateStr = dayjs(date).format('D MMMM YYYY').toString();
+      return (
+        <div className="absolute inset-x-0 left-1/2 top-1/2 z-10 flex w-fit -translate-x-1/2 -translate-y-1/2 flex-col gap-2 text-foreground md:gap-5">
+          <h1 className="text-lg font-bold md:text-2xl">
+            Seishinkan Kendo Studio Singapore
+          </h1>
+          <Link href={href}>
+            <h3 className="text-sm font-bold underline md:text-xl">
+              <span>{title}</span>
+            </h3>
+            <h4 className="text-xs underline md:text-lg">
+              <span>{dateStr}</span>
+            </h4>
+          </Link>
+        </div>
+      );
+    } else if (typeof heroBannerMessage === 'string') {
+      return (
+        <p className="absolute inset-x-0 left-1/2 top-1/2 z-10 w-full -translate-x-1/2 -translate-y-1/2 whitespace-pre-wrap bg-black/50 p-2 text-sm text-foreground md:w-fit md:text-lg">
+          {heroBannerMessage}
+        </p>
+      );
+    }
+    return null;
+  };
+
   return (
     <div
       className={clsx('relative w-screen bg-card pb-[theme(height.footer)]', {
@@ -88,11 +127,7 @@ export const HeroSection = (props: OwnProps) => {
       })}
       style={{ minHeight }}
     >
-      {typeof heroBannerMessage === 'string' ? (
-        <p className="absolute inset-x-0 left-1/2 top-1/2 z-10 w-full -translate-x-1/2 -translate-y-1/2 whitespace-pre-wrap bg-black/50 p-2 text-white md:w-fit">
-          {heroBannerMessage}
-        </p>
-      ) : null}
+      {heroBanner()}
       {heroImageComponent}
     </div>
   );

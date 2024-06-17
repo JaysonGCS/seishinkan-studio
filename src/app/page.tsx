@@ -35,9 +35,19 @@ export default async function Home() {
     typeof heroImage === 'number' || heroImage === undefined
   );
 
+  const heroBannerArticle = pageDetails.heroBannerArticle;
+
   return (
     <main>
-      {showHeroSection ? <HeroSection isMainHero media={heroImage} /> : null}
+      {showHeroSection ? (
+        <HeroSection
+          heroBannerArticle={
+            typeof heroBannerArticle !== 'number' ? heroBannerArticle : null
+          }
+          isMainHero
+          media={heroImage}
+        />
+      ) : null}
       <Section title="Announcements">
         <AnnouncementArea articles={pageDetails.announcementArticles} />
       </Section>

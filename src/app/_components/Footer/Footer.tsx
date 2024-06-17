@@ -11,8 +11,8 @@ export const Footer = async () => {
   const socialMedia = await getSocialMedia();
 
   return (
-    <footer className="prose prose-invert absolute bottom-0 flex h-footer w-full max-w-none flex-col content-evenly items-center justify-between bg-background px-5 py-3 text-center">
-      <span className="prose-base lg:prose-lg">誠心館</span>
+    <footer className="absolute bottom-0 flex h-footer w-full max-w-none flex-col content-evenly items-center justify-between bg-background px-5 py-3 text-center text-foreground">
+      <span className="text-base lg:text-lg">誠心館</span>
       <div className="flex flex-row gap-5">
         {socialMedia.facebookUrl ? (
           <a
@@ -57,7 +57,7 @@ export const Footer = async () => {
           </a>
         ) : null}
       </div>
-      <div className="py-1 text-xs lg:prose-sm">
+      <div className="py-1 text-xs lg:text-sm">
         <span>© 2024 Seishinkan Studio • Built with </span>
         <span>
           <span

@@ -8,7 +8,7 @@ const config = {
     './src/**/*.{ts,tsx}',
   ],
   darkMode: ['class'],
-  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
+  plugins: [require('tailwindcss-animate')],
   prefix: '',
   theme: {
     container: {
