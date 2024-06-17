@@ -1,3 +1,4 @@
+'use server';
 import {
   Card,
   CardContent,
@@ -67,7 +68,9 @@ export const AnnouncementArea = (props: OwnProps) => {
               {getImage()}
               <Link href={href}>
                 <CardHeader>
-                  <CardTitle>{title}</CardTitle>
+                  <CardTitle className="text-primary-foreground">
+                    {title}
+                  </CardTitle>
                   <CardDescription className="text-muted">
                     {dateStr}
                   </CardDescription>
@@ -75,7 +78,7 @@ export const AnnouncementArea = (props: OwnProps) => {
               </Link>
               <CardContent>
                 <Link href={href}>
-                  <p>{summary}</p>
+                  <p className="text-primary-foreground">{summary}</p>
                 </Link>
               </CardContent>
             </Card>

@@ -95,7 +95,7 @@ export const HeroSection = (props: OwnProps) => {
       const href = `${MainPage.NEWS_AND_ARTICLES}/${slug}`;
       const dateStr = dayjs(date).format('D MMMM YYYY').toString();
       return (
-        <div className="absolute inset-x-0 left-1/2 top-1/2 z-10 flex w-fit -translate-x-1/2 -translate-y-1/2 flex-col gap-2 text-foreground md:gap-5">
+        <div className="absolute inset-x-0 left-1/2 top-1/2 z-10 flex w-[80vw] -translate-x-1/2 -translate-y-1/2 flex-col gap-2 bg-black/50 p-2 text-foreground sm:w-fit md:gap-5">
           <h1 className="text-lg font-bold md:text-2xl">
             Seishinkan Kendo Studio Singapore
           </h1>
