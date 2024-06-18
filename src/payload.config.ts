@@ -17,6 +17,7 @@ import { WebsiteUsers } from './cms/collections/WebsiteUsers';
 import { ArticleMedia } from './cms/collections/media/ArticleMedia';
 import { Media } from './cms/collections/media/Media';
 import { ProfileMedia } from './cms/collections/media/ProfileMedia';
+import { StudioMedia } from './cms/collections/media/StudioMedia';
 import { DashboardHeader } from './cms/components/DashboardHeader';
 import { General } from './cms/globals/General';
 import { SocialMedia } from './cms/globals/SocialMedia';
@@ -60,6 +61,7 @@ export default buildConfig({
     ProfileMedia,
     Media,
     ArticleMedia,
+    StudioMedia,
   ],
   cookiePrefix: 'ssk',
   db: postgresAdapter({
@@ -104,6 +106,9 @@ export default buildConfig({
           adapter,
         },
         'profile-media': {
+          adapter,
+        },
+        'studio-media': {
           adapter,
         },
       },

@@ -5,6 +5,7 @@ import { HeroSection } from '../../_components/HeroSection/HeroSection';
 import { Section } from '../../_components/Section/Section';
 import { getPageDetails, getSeoMetadata } from '../../_data-access/server';
 import { MainPage } from '../../_utils/Paths';
+import { StudioOverviewArea } from './StudioOverviewArea';
 
 const PAGE_KEY = MainPage.RENTAL;
 
@@ -32,7 +33,9 @@ const RentalPage = async () => {
   return (
     <main>
       {showHeroSection ? <HeroSection media={heroImage} /> : null}
-      <Section>Rental Page</Section>
+      <Section title="Studio Overview">
+        <StudioOverviewArea />
+      </Section>
     </main>
   );
 };

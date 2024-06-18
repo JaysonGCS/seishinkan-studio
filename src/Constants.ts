@@ -7,6 +7,7 @@ type MediaSizeMapping = {
   card: MediaSize;
   halfHero: MediaSize;
   hero: Partial<Pick<MediaSize, 'height'>> & Pick<MediaSize, 'width'>;
+  heroCard: MediaSize;
   mobileHero: MediaSize;
   thumbnail: MediaSize;
 };
@@ -23,6 +24,11 @@ export const MediaConstant: MediaSizeMapping = {
   card: {
     height: 1024,
     width: 768,
+  },
+  // 16:9
+  heroCard: {
+    height: 2160,
+    width: 3840,
   },
   // 21:9
   mobileHero: {

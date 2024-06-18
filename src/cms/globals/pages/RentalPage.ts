@@ -15,5 +15,33 @@ export const RentalPage: GlobalConfig = {
       label: 'Enable Page',
     },
     ...secondaryHeroFields(),
+    {
+      name: 'studioOverviewList',
+      type: 'array',
+      fields: [
+        {
+          name: 'studioOverviewItem',
+          type: 'text',
+          required: true,
+        },
+      ],
+      minRows: 3,
+      required: true,
+    },
+    {
+      name: 'studioCarouselMedia',
+      type: 'array',
+      fields: [
+        {
+          name: 'studioImage',
+          type: 'upload',
+          label: 'Studio Image',
+          relationTo: 'studio-media',
+          required: true,
+        },
+      ],
+      minRows: 1,
+      required: true,
+    },
   ],
 };
