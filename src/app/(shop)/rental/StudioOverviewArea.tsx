@@ -1,3 +1,5 @@
+import type { RentalPage } from '@/src/payload-types';
+
 import { Card, CardContent } from '@/components/ui/card';
 import {
   Carousel,
@@ -9,14 +11,13 @@ import {
 import Image from 'next/image';
 import React from 'react';
 
-import { getPageDetails } from '../../_data-access/server';
-import { MainPage } from '../../_utils/Paths';
+interface OwnProps {
+  studioCarouselMedia: RentalPage['studioCarouselMedia'];
+  studioOverviewList: RentalPage['studioOverviewList'];
+}
 
-const PAGE_KEY = MainPage.RENTAL;
-
-export const StudioOverviewArea = async () => {
-  const pageDetails = await getPageDetails(PAGE_KEY);
-  const { studioCarouselMedia, studioOverviewList } = pageDetails;
+export const StudioOverviewArea = (props: OwnProps) => {
+  const { studioCarouselMedia, studioOverviewList } = props;
 
   const studioOverviewItems = studioOverviewList.map(
     ({ studioOverviewItem }, index) => (

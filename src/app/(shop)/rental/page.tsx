@@ -30,11 +30,16 @@ const RentalPage = async () => {
     typeof heroImage === 'number' || heroImage === undefined
   );
 
+  const { studioCarouselMedia, studioOverviewList } = pageDetails;
+
   return (
     <main>
       {showHeroSection ? <HeroSection media={heroImage} /> : null}
       <Section title="Studio Overview">
-        <StudioOverviewArea />
+        <StudioOverviewArea
+          studioCarouselMedia={studioCarouselMedia}
+          studioOverviewList={studioOverviewList}
+        />
       </Section>
     </main>
   );
