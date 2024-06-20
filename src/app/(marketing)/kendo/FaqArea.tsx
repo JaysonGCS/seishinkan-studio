@@ -18,7 +18,7 @@ export const FaqArea = (props: OwnProps) => {
     const { description, title } = faq;
     return (
       <AccordionItem key={`kendo-page-faq-${faq.title}`} value={title}>
-        <AccordionTrigger>{title}</AccordionTrigger>
+        <AccordionTrigger className="">{title}</AccordionTrigger>
         <AccordionContent className="whitespace-pre-wrap">
           {description}
         </AccordionContent>
@@ -27,8 +27,8 @@ export const FaqArea = (props: OwnProps) => {
   });
 
   return (
-    <div className="w-full px-8 py-14 lg:px-14">
-      <h1>FAQ</h1>
+    <div className="w-full px-8 py-5 lg:p-14">
+      <h1 className="font-bold">FAQ</h1>
       <Accordion collapsible type="single">
         {faqList}
       </Accordion>

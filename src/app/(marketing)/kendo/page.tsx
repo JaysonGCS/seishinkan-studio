@@ -54,7 +54,7 @@ const KendoPage = async () => {
         <ClassesArea kendoClasses={kendoClasses} />
       </Section>
       <Section anchor={pageToAnchor[MainPage.KENDO].classes}>
-        <h1>Join our Kendo Community</h1>
+        <h1 className="font-bold">Join our Kendo Community</h1>
         {/* TODO: Refactor or relocate ContactArea to be reused properly */}
         <ContactArea email={email} />
       </Section>

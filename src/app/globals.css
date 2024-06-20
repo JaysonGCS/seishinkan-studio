@@ -66,4 +66,16 @@
     display: flex;
     justify-content: center;
   }
+  h1 {
+    @apply lg:text-2xl md:text-xl text-lg;
+  }
+  h2 {
+    @apply lg:text-xl md:text-lg text-base;
+  }
+  h3 {
+    @apply lg:text-lg md:text-base text-base;
+  }
+  p {
+    @apply lg:text-base md:text-base text-sm leading-normal;
+  }
 }

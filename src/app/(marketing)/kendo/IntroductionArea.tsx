@@ -46,8 +46,8 @@ export const IntroductionArea = (props: OwnProps) => {
     );
   });
   return (
-    <div className="flex w-full flex-col gap-4 p-14 lg:px-20">
-      <h1>Introduction</h1>
+    <div className="flex w-full flex-col gap-4 px-10 py-5 lg:p-14">
+      <h1 className="font-bold">Introduction</h1>
       <Carousel setApi={setApi}>
         <CarouselContent>{carouselItems}</CarouselContent>
         <CarouselPrevious />

@@ -21,7 +21,7 @@ interface OwnProps {
 }
 
 const DEFAULT_HALF_HERO_HEIGHT = MediaConstant.halfHero.height / 2;
-const DEFAULT_MOBILE_HERO_HEIGHT = MediaConstant.mobileHero.height / 4;
+const DEFAULT_MOBILE_HERO_HEIGHT = MediaConstant.mobileHero.height / 3;
 
 const isValidHeroUrl = (value: null | string | undefined): value is string => {
   return value !== null && value !== undefined;
@@ -96,22 +96,18 @@ export const HeroSection = (props: OwnProps) => {
       const dateStr = dayjs(date).format('D MMMM YYYY').toString();
       return (
         <div className="absolute inset-x-0 left-1/2 top-1/2 z-10 flex w-[80vw] -translate-x-1/2 -translate-y-1/2 flex-col gap-2 bg-black/50 p-2 text-foreground sm:w-fit md:gap-5">
-          <h1 className="text-lg font-bold md:text-2xl">
-            Seishinkan Kendo Studio Singapore
-          </h1>
+          <h1 className="font-bold">Seishinkan Kendo Studio Singapore</h1>
           <Link href={href}>
-            <h3 className="text-sm font-bold underline md:text-xl">
+            <h2 className="font-bold underline">
               <span>{title}</span>
-            </h3>
-            <h4 className="text-xs underline md:text-lg">
-              <span>{dateStr}</span>
-            </h4>
+            </h2>
+            <span className="text-xs underline md:text-lg">{dateStr}</span>
           </Link>
         </div>
       );
     } else if (typeof heroBannerMessage === 'string') {
       return (
-        <p className="absolute inset-x-0 left-1/2 top-1/2 z-10 w-full -translate-x-1/2 -translate-y-1/2 whitespace-pre-wrap bg-black/50 p-2 text-sm text-foreground md:w-fit md:text-lg">
+        <p className="absolute inset-x-0 left-1/2 top-1/2 z-10 w-full -translate-x-1/2 -translate-y-1/2 whitespace-pre-wrap bg-black/50 p-2 text-foreground md:w-fit md:text-lg">
           {heroBannerMessage}
         </p>
       );

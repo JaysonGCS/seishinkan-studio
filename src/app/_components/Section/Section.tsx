@@ -25,7 +25,9 @@ export const Section = (props: PropsWithChildren<OwnProps>) => {
       )}
       id={anchor}
     >
-      {title ? <h1 className="place-self-start pb-2">{title}</h1> : null}
+      {title ? (
+        <h1 className="place-self-start pb-2 font-bold">{title}</h1>
+      ) : null}
       {children}
     </section>
   );

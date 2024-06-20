@@ -11,7 +11,7 @@ export default function Error() {
   return (
     <Section>
       <div>
-        <h1>Something went wrong!</h1>
+        <h1 className="font-bold">Something went wrong!</h1>
       </div>
     </Section>
   );

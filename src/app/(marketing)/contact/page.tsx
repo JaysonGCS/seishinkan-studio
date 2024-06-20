@@ -44,7 +44,7 @@ const ContactPage = async () => {
       <Section title="Contact Us">
         <div className="flex w-5/6 flex-col items-center gap-10 lg:w-screen lg:flex-row lg:justify-evenly lg:gap-5">
           <ContactArea email={email} />
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 text-sm md:text-base">
             <a
               className="flex w-fit flex-row gap-2 underline hover:text-accent/90"
               href={`mailto:${email}?subject=${DEFAULT_ENQUIRY_EMAIL_TITLE}`}

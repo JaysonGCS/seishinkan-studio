@@ -7,7 +7,7 @@ export const DisabledPage = () => {
   return (
     <main className="flex justify-center py-5">
       <Section>
-        <h1>We will be back soon!</h1>
+        <h1 className="font-bold">We will be back soon!</h1>
       </Section>
     </main>
   );

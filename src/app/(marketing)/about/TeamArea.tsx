@@ -71,6 +71,6 @@ export const TeamArea = (props: OwnProps) => {
     );
   });
   return teamList.length > 0 ? (
-    <div className="px-8 py-14 lg:px-14">{teamList}</div>
+    <div className="px-8 py-5 lg:p-14">{teamList}</div>
   ) : null;
 };
