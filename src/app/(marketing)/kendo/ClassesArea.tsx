@@ -27,7 +27,10 @@ export const ClassesArea = (props: OwnProps) => {
                 : undefined;
               const timeStr = `${startTimeHM}${endTimeHM ? ` - ${endTimeHM}` : ''}`;
               return (
-                <h3 className="font-bold text-accent">
+                <h3
+                  className="font-bold text-accent"
+                  key={`kendo-classes-schedule-${title}`}
+                >
                   <span>{title}: </span>
                   <span className="inline-block">{timeStr}</span>
                 </h3>
