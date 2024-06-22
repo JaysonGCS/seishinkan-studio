@@ -21,7 +21,7 @@ This is the source code for the Seishinkan Studio 2.0 [website](https://www.seis
 - ![Stable](https://progress-bar.dev/100/?title=stable) Contact Page
 - ![Stable](https://progress-bar.dev/100/?title=stable) Login and Signup
 - ![Progress](https://progress-bar.dev/0/?title=progress) Internal Profile Page
-- ![Progress](https://progress-bar.dev/0/?title=progress) Internal Member Page
+- ![Progress](https://progress-bar.dev/0/?title=progress) Internal Kendo Member Page
 
 ### Core Functionalities
 
@@ -33,6 +33,7 @@ This is the source code for the Seishinkan Studio 2.0 [website](https://www.seis
 
 - ![Progress](https://progress-bar.dev/0/?title=progress) Analytics Integration
 - ![Progress](https://progress-bar.dev/0/?title=progress) Ads Integration
+- ![Progress](https://progress-bar.dev/0/?title=progress) User Password Reset Workflow
 - ![Progress](https://progress-bar.dev/0/?title=progress) CMS - Integrate Preview
 - ![Progress](https://progress-bar.dev/50/?title=progress) CMS - Object Storage for Media
 - ![Progress](https://progress-bar.dev/0/?title=progress) Devops - Deployment/Hosting Integration
