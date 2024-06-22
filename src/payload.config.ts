@@ -9,6 +9,8 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import path from 'path';
 import { buildConfig } from 'payload/config';
 
+import type { Config } from './payload-types';
+
 import { Articles } from './cms/collections/Articles';
 import { ContactFormRecords } from './cms/collections/ContactFormRecords';
 import { InviteCodes } from './cms/collections/InviteCodes';
@@ -34,6 +36,11 @@ const generateArticleTitle: GenerateTitle = (props) => {
   const doc = props.doc as { title: { value: string } };
   return `Seishinkansg.com — ${doc.title.value}`;
 };
+
+declare module 'payload' {
+  // @ts-expect-error -- This is for type enhancement during development only.
+  export interface GeneratedTypes extends Config {}
+}
 
 const adapter = s3Adapter({
   bucket: process.env.S3_BUCKET ?? '',
@@ -118,6 +125,7 @@ export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
   telemetry: false,
   typescript: {
+    declare: false, // defaults to true if not set
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
   upload: {
