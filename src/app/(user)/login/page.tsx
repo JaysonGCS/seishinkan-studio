@@ -9,7 +9,7 @@ const PAGE_KEY = MainPage.LOGIN;
 // TODO: add recaptcha v3
 const Page = async () => {
   const pageDetails = await getPageDetails(PAGE_KEY);
-  const { enabled: isEnabled } = pageDetails;
+  const { allowSignup, enabled: isEnabled } = pageDetails;
 
   if (!isEnabled) {
     return <DisabledPage />;
@@ -17,7 +17,7 @@ const Page = async () => {
 
   return (
     <main className="flex justify-center">
-      <LoginPage />
+      <LoginPage allowSignup={allowSignup ?? false} />
     </main>
   );
 };

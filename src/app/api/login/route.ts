@@ -18,6 +18,16 @@ export async function POST(request: NextRequest) {
   const body = await request.json();
   const { email, password } = loginFormSchema.parse(body);
 
+  const isLoginPageEnabled = (await payload.findGlobal({ slug: 'login-page' }))
+    .enabled;
+
+  if (!isLoginPageEnabled) {
+    logger.error(`Invalid log-in request - ${email}`);
+    return NextResponse.json(
+      { message: 'Log-in not allowed.' },
+      { status: 405 },
+    );
+  }
   try {
     const validateVerifiedUser = await payload.find({
       collection: 'website-users',

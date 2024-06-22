@@ -38,7 +38,12 @@ import { MainPage } from '../../_utils/Paths';
 
 type TLoginStage = 'LOGIN' | 'SIGNUP';
 
-export const LoginPage = () => {
+interface OwnProps {
+  allowSignup: boolean;
+}
+
+export const LoginPage = (props: OwnProps) => {
+  const { allowSignup } = props;
   const [loginStage, setLoginStage] = useState<TLoginStage>('LOGIN');
   const [isInProgress, setInProgress] = useState(false);
   const router = useRouter();
@@ -110,7 +115,7 @@ export const LoginPage = () => {
 
   const onSignUpSubmit = useCallback(
     async (values: z.infer<typeof signUpFormSchema>) => {
-      if (!isTokenExist()) {
+      if (!isTokenExist() || !allowSignup) {
         return;
       }
       setInProgress(true);
@@ -118,6 +123,7 @@ export const LoginPage = () => {
         setInProgress(false);
         return;
       }
+      // TODO: move to _data-access
       const resp = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/signup`, {
         body: JSON.stringify(values),
         method: 'POST',
@@ -144,7 +150,7 @@ export const LoginPage = () => {
       }
       setInProgress(false);
     },
-    [isTokenExist, signUpForm, token, validateToken],
+    [allowSignup, isTokenExist, signUpForm, token, validateToken],
   );
 
   const onLoginSubmit = useCallback(
@@ -182,9 +188,12 @@ export const LoginPage = () => {
   );
 
   const handleSwitchToSignUp = useCallback(() => {
+    if (!allowSignup) {
+      return;
+    }
     setLoginStage('SIGNUP');
     setToken(null);
-  }, []);
+  }, [allowSignup]);
 
   const handleSwitchToLogin = useCallback(() => {
     setLoginStage('LOGIN');
@@ -194,7 +203,7 @@ export const LoginPage = () => {
   return (
     <Section>
       <div className="w-5/6 lg:w-6/12">
-        {loginStage === 'SIGNUP' ? (
+        {loginStage === 'SIGNUP' && allowSignup ? (
           <div className="flex flex-col gap-3">
             <Form key={`${LoginPage.name}-signup`} {...signUpForm}>
               <form
@@ -321,14 +330,16 @@ export const LoginPage = () => {
                     disabled={token === null || isInProgress}
                     isLoading={token === null}
                   />
-                  <Button
-                    disabled={token === null || isInProgress}
-                    onClick={handleSwitchToSignUp}
-                    type="button"
-                    variant="link"
-                  >
-                    Create account
-                  </Button>
+                  {allowSignup && (
+                    <Button
+                      disabled={token === null || isInProgress || !allowSignup}
+                      onClick={handleSwitchToSignUp}
+                      type="button"
+                      variant="link"
+                    >
+                      Create account
+                    </Button>
+                  )}
                 </div>
               </form>
             </Form>

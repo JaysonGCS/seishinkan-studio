@@ -12,6 +12,12 @@ export const LoginPage: GlobalConfig = {
       defaultValue: true,
       label: 'Enable Page',
     },
+    {
+      name: 'allowSignup',
+      type: 'checkbox',
+      defaultValue: false,
+      label: 'Allow Sign-up',
+    },
   ],
   hooks: {
     afterChange: [

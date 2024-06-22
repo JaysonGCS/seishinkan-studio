@@ -13,6 +13,16 @@ export async function POST(request: Request) {
   const { email, password } = signUpFormSchema.parse(body);
 
   const payload = await getPayloadClient();
+  const isSignupAllowed = (await payload.findGlobal({ slug: 'login-page' }))
+    .allowSignup;
+
+  if (!isSignupAllowed) {
+    logger.error(`Invalid sign-up request - ${email}`);
+    return NextResponse.json(
+      { message: 'Sign-up not allowed.' },
+      { status: 405 },
+    );
+  }
   try {
     const matchingRecords = await payload.find({
       collection: 'website-users',
