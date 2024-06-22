@@ -12,11 +12,11 @@ import {
 import { useAtomValue } from 'jotai';
 import { LogOut, MenuIcon, Swords, UserRound, X } from 'lucide-react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import React, { useCallback, useState } from 'react';
 
 import { LoginStatus, loginStateAtom } from '../../_atoms/UserLoginAtoms';
-import { MainPage, OtherPage } from '../../_utils/Paths';
+import { InternalPortalPage, MainPage, OtherPage } from '../../_utils/Paths';
 
 interface OwnProps {
   className?: string;
@@ -29,6 +29,7 @@ export const MobileNavigationMenu = (
   const [open, setOpen] = useState(false);
   const loginState = useAtomValue(loginStateAtom);
   const router = useRouter();
+  const currentPath = usePathname();
 
   const handleLogout = useCallback(async () => {
     // TODO: move to _data-access
@@ -39,13 +40,20 @@ export const MobileNavigationMenu = (
   }, [router]);
 
   const handleProfileSelect = useCallback(() => {
-    // TODO
-  }, []);
-
-  const handleKendoMemberPageSelect = useCallback(() => {
+    if (currentPath === MainPage.MEMBER.toString()) {
+      return;
+    }
     router.push(MainPage.MEMBER);
     router.refresh();
-  }, [router]);
+  }, [currentPath, router]);
+
+  const handleKendoMemberPageSelect = useCallback(() => {
+    if (currentPath === InternalPortalPage.KENDO_MEMBER.toString()) {
+      return;
+    }
+    router.push(InternalPortalPage.KENDO_MEMBER);
+    router.refresh();
+  }, [currentPath, router]);
 
   return (
     <div className={className}>

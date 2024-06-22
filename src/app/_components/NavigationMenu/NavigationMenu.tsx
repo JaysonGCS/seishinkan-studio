@@ -19,6 +19,7 @@ import { LoginStatus, loginStateAtom } from '../../_atoms/UserLoginAtoms';
 import { SSK_WEB_LOGIN_STATUS_HEADER } from '../../_utils/Constants';
 import { getCookie } from '../../_utils/General';
 import {
+  InternalPortalPage,
   MainPage,
   OtherPage,
   getMainPath,
@@ -77,22 +78,22 @@ const AccountNavigationMenu = () => {
   const loginState = useAtomValue(loginStateAtom);
   const router = useRouter();
   const currentPath = usePathname();
-  const currentMainPath = getMainPath(currentPath);
-  const activePage = isMainPage(currentMainPath)
-    ? currentMainPath
-    : MainPage.HOME;
 
   const handleProfileSelect = useCallback(() => {
-    // TODO
-  }, []);
-
-  const handleKendoMemberPageSelect = useCallback(() => {
-    if (activePage === MainPage.MEMBER) {
+    if (currentPath === MainPage.MEMBER.toString()) {
       return;
     }
     router.push(MainPage.MEMBER);
     router.refresh();
-  }, [activePage, router]);
+  }, [currentPath, router]);
+
+  const handleKendoMemberPageSelect = useCallback(() => {
+    if (currentPath === InternalPortalPage.KENDO_MEMBER.toString()) {
+      return;
+    }
+    router.push(InternalPortalPage.KENDO_MEMBER);
+    router.refresh();
+  }, [currentPath, router]);
 
   const handleLogout = useCallback(async () => {
     // TODO: move to _data-access

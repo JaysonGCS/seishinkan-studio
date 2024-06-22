@@ -27,6 +27,10 @@ export enum OtherPage {
   LOGOUT = '/logout',
 }
 
+export enum InternalPortalPage {
+  KENDO_MEMBER = `${MainPage.MEMBER}/kendo`,
+}
+
 export const isOtherPage = (path: string): path is OtherPage => {
   return Object.values<string>(OtherPage).includes(path);
 };
