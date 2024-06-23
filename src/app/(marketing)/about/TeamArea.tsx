@@ -1,7 +1,17 @@
 import type { AboutPage, ProfileMedia } from '@/src/payload-types';
 
+import dayjs from 'dayjs';
 import Image from 'next/image';
 import React, { useCallback } from 'react';
+
+import {
+  Timeline,
+  TimelineContent,
+  TimelineDot,
+  TimelineHeading,
+  TimelineItem,
+  TimelineLine,
+} from '../../_components/Shadcn/Timeline';
 
 interface OwnProps {
   team: AboutPage['team'];
@@ -34,12 +44,36 @@ export const TeamArea = (props: OwnProps) => {
   const generateAchievementList = (
     achievements: AboutPage['team'][0]['achievements'],
   ) =>
-    achievements?.map((achievement) => {
+    achievements?.map((achievement, index) => {
+      const parsedDate = dayjs(new Date(achievement.date)).format('MMM YYYY');
       return (
-        <li key={`team-section-achievement-${achievement.title}`}>
-          <h3 className="my-0 text-left font-bold">{achievement.title}</h3>
-          <p className="mb-0 text-left">{achievement.description}</p>
-        </li>
+        <TimelineItem
+          key={`team-section-achievement-${achievement.title}`}
+          status="done"
+        >
+          <TimelineHeading
+            className="line-clamp-none text-clip text-sm lg:text-base"
+            side="left"
+            variant="secondary"
+          >
+            {parsedDate}
+          </TimelineHeading>
+          <TimelineHeading
+            className="line-clamp-none text-clip text-sm lg:text-base"
+            side="right"
+          >
+            {achievement.title}
+          </TimelineHeading>
+          <TimelineContent side="right">
+            {achievement.description}
+          </TimelineContent>
+          <TimelineDot status="current" />
+          {index !== achievements.length - 1 && (
+            <React.Fragment>
+              <TimelineLine />
+            </React.Fragment>
+          )}
+        </TimelineItem>
       );
     });
 
@@ -57,20 +91,30 @@ export const TeamArea = (props: OwnProps) => {
         key={`about-page-profile-${personDetail.name}`}
       >
         {media}
-        <div className="flex flex-col gap-4">
-          <h2>
-            <span className="font-bold">{`${name}${title ? ', ' : ''}`}</span>
-            <span className="italic">{title}</span>
-          </h2>
-          <p className="whitespace-pre-wrap">{introduction}</p>
-          <div>
-            <ul>{generateAchievementList(achievements)}</ul>
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
+            <h1>
+              <span className="font-bold">{`${name}${title ? ', ' : ''}`}</span>
+              <span className="italic">{title}</span>
+            </h1>
+            <p className="whitespace-pre-wrap">{introduction}</p>
           </div>
+          {achievements && achievements.length > 0 && (
+            <div className="flex flex-col gap-4 ">
+              <h2 className="font-bold">Achievements</h2>
+              <Timeline
+                className="[&>li]:grid-cols-[1fr_min-content_4fr]"
+                positions="center"
+              >
+                {generateAchievementList(achievements)}
+              </Timeline>
+            </div>
+          )}
         </div>
       </div>
     );
   });
   return teamList.length > 0 ? (
-    <div className="px-8 py-5 lg:p-14">{teamList}</div>
+    <div className="px-2 py-5 lg:p-14">{teamList}</div>
   ) : null;
 };

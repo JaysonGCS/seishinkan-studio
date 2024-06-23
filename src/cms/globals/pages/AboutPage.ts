@@ -77,6 +77,20 @@ export const AboutPage: GlobalConfig = {
             {
               name: 'title',
               type: 'text',
+              label: 'Title (max 50 characters)',
+              maxLength: 50,
+              required: true,
+            },
+            {
+              name: 'date',
+              type: 'date',
+              admin: {
+                date: {
+                  displayFormat: 'MMM yyyy',
+                  pickerAppearance: 'monthOnly',
+                },
+              },
+              label: 'Date (MMM yyyy)',
               required: true,
             },
             {
