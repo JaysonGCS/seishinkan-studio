@@ -9,3 +9,4 @@ src/profileMedia
 src/articleMedia
 src/studioMedia
 log.out
+payload-types.ts
