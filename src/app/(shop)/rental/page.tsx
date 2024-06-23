@@ -30,7 +30,8 @@ const RentalPage = async () => {
     typeof heroImage === 'number' || heroImage === undefined
   );
 
-  const { studioCarouselMedia, studioOverviewList } = pageDetails;
+  const { studioCarouselMedia, studioFacilityList, studioOverviewList } =
+    pageDetails;
 
   return (
     <main>
@@ -38,8 +39,15 @@ const RentalPage = async () => {
       <Section title="Studio Overview">
         <StudioOverviewArea
           studioCarouselMedia={studioCarouselMedia}
+          studioFacilityList={studioFacilityList}
           studioOverviewList={studioOverviewList}
         />
+      </Section>
+      <Section lightTheme title="Booking Rate">
+        <div>Booking</div>
+      </Section>
+      <Section title="Business Inquiry">
+        <div>Business Inquiry</div>
       </Section>
     </main>
   );

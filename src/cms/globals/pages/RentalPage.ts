@@ -25,7 +25,22 @@ export const RentalPage: GlobalConfig = {
           required: true,
         },
       ],
-      minRows: 3,
+      label: 'General Studio/Space Overview (e.g., size, fits XX pax and etc)',
+      minRows: 2,
+      required: true,
+    },
+    {
+      name: 'studioFacilityList',
+      type: 'array',
+      fields: [
+        {
+          name: 'studioFacilityItem',
+          type: 'text',
+          required: true,
+        },
+      ],
+      label: 'Studio Facility (e.g., Free Wifi, Speaker and etc)',
+      minRows: 2,
       required: true,
     },
     {
