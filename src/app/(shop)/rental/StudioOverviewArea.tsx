@@ -32,11 +32,11 @@ export const StudioOverviewArea = (props: OwnProps) => {
       <StudioOverviewCarousel studioCarouselMedia={studioCarouselMedia} />
       <div className="flex basis-1/2 flex-col gap-6">
         <div className="flex flex-col gap-4">
-          <h2>Features</h2>
+          <h2 className="font-bold">Features</h2>
           <ul className="list-disc pl-4">{studioOverviewItems}</ul>
         </div>
         <div className="flex flex-col gap-4">
-          <h2>Facilities</h2>
+          <h2 className="font-bold">Facilities</h2>
           <ul className="list-disc pl-4">{studioFacilityItems}</ul>
         </div>
       </div>
