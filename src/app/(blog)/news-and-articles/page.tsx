@@ -46,7 +46,7 @@ const NewsAndArticlesPage = async () => {
     <main>
       {showHeroSection ? <HeroSection media={heroImage} /> : null}
       <Section>
-        <div className="w-full px-8 py-5 lg:p-14">
+        <div className="w-full px-2 py-5 lg:p-14">
           <h1 className="flex items-center gap-2 pb-8 font-bold">
             <Pin size={20} />
             <span>Pinned Posts</span>
@@ -56,7 +56,7 @@ const NewsAndArticlesPage = async () => {
       </Section>
       <hr className="mx-auto my-4 h-1 w-48 rounded border-0 bg-foreground md:my-10" />
       <Section>
-        <div className="w-full px-8 pb-14 lg:px-14">
+        <div className="w-full px-2 pb-14 lg:px-14">
           <h1 className="flex items-center gap-2 pb-8 font-bold">
             <Newspaper size={20} />
             <span>Latest Posts</span>

@@ -19,7 +19,7 @@ export const StudioOverviewArea = (props: OwnProps) => {
   );
 
   return (
-    <div className="flex w-screen flex-col justify-between gap-4 px-8 py-6 md:flex-row lg:px-14">
+    <div className="flex w-full flex-col justify-between gap-4 px-2 py-6 md:w-screen md:flex-row lg:px-14">
       <StudioOverviewCarousel studioCarouselMedia={studioCarouselMedia} />
       <div className="basis-1/2">
         <h2>Features</h2>
