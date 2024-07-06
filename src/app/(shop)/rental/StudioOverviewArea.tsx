@@ -3,9 +3,9 @@ import type { RentalPage } from '@/src/payload-types';
 import { StudioOverviewCarousel } from './StudioOverviewCarousel';
 
 interface OwnProps {
-  studioCarouselMedia: RentalPage['studioCarouselMedia'];
-  studioFacilityList: RentalPage['studioFacilityList'];
-  studioOverviewList: RentalPage['studioOverviewList'];
+  studioCarouselMedia: RentalPage['studioOverview']['studioCarouselMedia'];
+  studioFacilityList: RentalPage['studioOverview']['studioFacilityList'];
+  studioOverviewList: RentalPage['studioOverview']['studioOverviewList'];
 }
 
 export const StudioOverviewArea = (props: OwnProps) => {

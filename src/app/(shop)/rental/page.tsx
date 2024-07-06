@@ -32,8 +32,10 @@ const RentalPage = async () => {
     typeof heroImage === 'number' || heroImage === undefined
   );
 
+  const { studioBooking, studioOverview } = pageDetails;
   const { studioCarouselMedia, studioFacilityList, studioOverviewList } =
-    pageDetails;
+    studioOverview;
+  const { enabled: isStudioBookingEnabled } = studioBooking;
 
   return (
     <main>
@@ -45,9 +47,11 @@ const RentalPage = async () => {
           studioOverviewList={studioOverviewList}
         />
       </Section>
-      <Section lightTheme title="Booking Rate">
-        <BookingRate />
-      </Section>
+      {isStudioBookingEnabled && (
+        <Section lightTheme title="Booking Rate">
+          <BookingRate />
+        </Section>
+      )}
       <Section title="Business Inquiry">
         <BusinessInquiry />
       </Section>

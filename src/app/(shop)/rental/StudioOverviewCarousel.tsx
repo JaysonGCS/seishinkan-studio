@@ -15,7 +15,7 @@ import Image from 'next/image';
 import React, { useRef } from 'react';
 
 interface OwnProps {
-  studioCarouselMedia: RentalPage['studioCarouselMedia'];
+  studioCarouselMedia: RentalPage['studioOverview']['studioCarouselMedia'];
 }
 
 export const StudioOverviewCarousel = (props: OwnProps) => {
