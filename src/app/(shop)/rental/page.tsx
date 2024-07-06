@@ -35,7 +35,7 @@ const RentalPage = async () => {
   const { studioBooking, studioOverview } = pageDetails;
   const { studioCarouselMedia, studioFacilityList, studioOverviewList } =
     studioOverview;
-  const { enabled: isStudioBookingEnabled } = studioBooking;
+  const { enabled: isStudioBookingEnabled, studioRates } = studioBooking;
 
   return (
     <main>
@@ -49,7 +49,7 @@ const RentalPage = async () => {
       </Section>
       {isStudioBookingEnabled && (
         <Section lightTheme title="Booking Rate">
-          <BookingRate />
+          <BookingRate studioRates={studioRates} />
         </Section>
       )}
       <Section title="Business Inquiry">
