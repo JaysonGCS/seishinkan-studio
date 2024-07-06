@@ -5,6 +5,7 @@ import { HeroSection } from '../../_components/HeroSection/HeroSection';
 import { Section } from '../../_components/Section/Section';
 import { getPageDetails, getSeoMetadata } from '../../_data-access/server';
 import { MainPage } from '../../_utils/Paths';
+import { BookingRate } from './BookingRate';
 import { BusinessInquiry } from './BusinessInquiry';
 import { StudioOverviewArea } from './StudioOverviewArea';
 
@@ -45,7 +46,7 @@ const RentalPage = async () => {
         />
       </Section>
       <Section lightTheme title="Booking Rate">
-        <div>Booking</div>
+        <BookingRate />
       </Section>
       <Section title="Business Inquiry">
         <BusinessInquiry />
