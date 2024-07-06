@@ -5,6 +5,7 @@ import { HeroSection } from '../../_components/HeroSection/HeroSection';
 import { Section } from '../../_components/Section/Section';
 import { getPageDetails, getSeoMetadata } from '../../_data-access/server';
 import { MainPage } from '../../_utils/Paths';
+import { BusinessInquiry } from './BusinessInquiry';
 import { StudioOverviewArea } from './StudioOverviewArea';
 
 const PAGE_KEY = MainPage.RENTAL;
@@ -47,7 +48,7 @@ const RentalPage = async () => {
         <div>Booking</div>
       </Section>
       <Section title="Business Inquiry">
-        <div>Business Inquiry</div>
+        <BusinessInquiry />
       </Section>
     </main>
   );
