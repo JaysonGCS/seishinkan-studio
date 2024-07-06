@@ -86,6 +86,102 @@ export const RentalPage: GlobalConfig = {
               label: 'Enable Studio Booking',
               required: true,
             },
+            {
+              name: 'studioRates',
+              type: 'array',
+              fields: [
+                {
+                  name: 'title',
+                  type: 'text',
+                  label:
+                    'Title (free text - e.g., "Weekday Off Peak" or "Weekend")',
+                  required: true,
+                },
+                {
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'hourlyRate',
+                      type: 'number',
+                      admin: {
+                        step: 1,
+                      },
+                      min: 10,
+                      required: true,
+                    },
+                    {
+                      name: 'availableDays',
+                      type: 'select',
+                      admin: {
+                        isClearable: true,
+                      },
+                      hasMany: true,
+                      options: [
+                        {
+                          label: 'Monday',
+                          value: 'MO',
+                        },
+                        {
+                          label: 'Tuesday',
+                          value: 'TU',
+                        },
+                        {
+                          label: 'Wednesday',
+                          value: 'WE',
+                        },
+                        {
+                          label: 'Thursday',
+                          value: 'TH',
+                        },
+                        {
+                          label: 'Friday',
+                          value: 'FR',
+                        },
+                        {
+                          label: 'Saturday',
+                          value: 'SA',
+                        },
+                        {
+                          label: 'Sunday',
+                          value: 'SU',
+                        },
+                      ],
+                      required: true,
+                    },
+                  ],
+                },
+                {
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'startTime',
+                      type: 'date',
+                      admin: {
+                        date: {
+                          displayFormat: 'h:mm aa',
+                          pickerAppearance: 'timeOnly',
+                        },
+                      },
+                      required: true,
+                    },
+                    {
+                      name: 'endTime',
+                      type: 'date',
+                      admin: {
+                        date: {
+                          displayFormat: 'h:mm aa',
+                          pickerAppearance: 'timeOnly',
+                        },
+                      },
+                      required: true,
+                    },
+                  ],
+                },
+              ],
+              label: 'Studio Booking Rates',
+              minRows: 1,
+              required: true,
+            },
           ],
         },
       ],
