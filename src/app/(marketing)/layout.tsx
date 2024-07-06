@@ -3,7 +3,7 @@ import React from 'react';
 
 import { TURNSTILE_SCRIPT } from '../_utils/Constants';
 
-export default function NextedLayout({
+export default function NestedLayout({
   children,
 }: {
   children: React.ReactNode;

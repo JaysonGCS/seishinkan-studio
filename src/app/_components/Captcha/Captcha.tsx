@@ -14,10 +14,10 @@ import { TURNSTILE_LOAD_FUNCTION } from '../../_utils/Constants';
 
 const globalNamespace = (
   typeof globalThis !== 'undefined' ? globalThis : window
-) as typeof window & {
+) as {
   [TURNSTILE_LOAD_FUNCTION]?: () => void;
   turnstile?: Turnstile.Turnstile;
-};
+} & typeof window;
 
 type CaptchaState = 'ready' | 'unloaded';
 
