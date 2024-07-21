@@ -1,0 +1,10 @@
+.git
+.gitignore
+build/
+.yarn/
+node_modules/
+dist/
+.next/
+.dockerignore
+README.md
+LICENSE
